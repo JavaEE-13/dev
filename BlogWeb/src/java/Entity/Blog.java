@@ -45,7 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Blog.findByImage", query = "SELECT b FROM Blog b WHERE b.image = :image")
     , @NamedQuery(name = "Blog.findByContent", query = "SELECT b FROM Blog b WHERE b.content = :content")
     , @NamedQuery(name = "Blog.findByTitle", query = "SELECT b FROM Blog b WHERE b.title = :title")
-    , @NamedQuery(name = "Blog.findByBlogcol", query = "SELECT b FROM Blog b WHERE b.blogcol = :blogcol")})
+    , @NamedQuery(name = "Blog.findByCollectedNum", query = "SELECT b FROM Blog b WHERE b.collectedNum = :collectedNum")})
 public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,9 +77,10 @@ public class Blog implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "Title")
     private String title;
-    @Size(max = 45)
-    @Column(name = "Blogcol")
-    private String blogcol;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Collected_Num")
+    private int collectedNum;
     @JoinTable(name = "collection", joinColumns = {
         @JoinColumn(name = "Blog_BlogNo", referencedColumnName = "BlogNo")}, inverseJoinColumns = {
         @JoinColumn(name = "User_UserNo", referencedColumnName = "UserNo")})
@@ -101,12 +102,13 @@ public class Blog implements Serializable {
         this.blogNo = blogNo;
     }
 
-    public Blog(Integer blogNo, Date createdTime, String label, String content, String title) {
+    public Blog(Integer blogNo, Date createdTime, String label, String content, String title, int collectedNum) {
         this.blogNo = blogNo;
         this.createdTime = createdTime;
         this.label = label;
         this.content = content;
         this.title = title;
+        this.collectedNum = collectedNum;
     }
 
     public Integer getBlogNo() {
@@ -157,12 +159,12 @@ public class Blog implements Serializable {
         this.title = title;
     }
 
-    public String getBlogcol() {
-        return blogcol;
+    public int getCollectedNum() {
+        return collectedNum;
     }
 
-    public void setBlogcol(String blogcol) {
-        this.blogcol = blogcol;
+    public void setCollectedNum(int collectedNum) {
+        this.collectedNum = collectedNum;
     }
 
     @XmlTransient

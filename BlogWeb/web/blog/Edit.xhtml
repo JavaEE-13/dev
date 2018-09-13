@@ -29,8 +29,8 @@
                     <h:inputText id="content" value="#{blogController.selected.content}" title="#{bundle.EditBlogTitle_content}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_content}"/>
                     <h:outputLabel value="#{bundle.EditBlogLabel_title}" for="title" />
                     <h:inputText id="title" value="#{blogController.selected.title}" title="#{bundle.EditBlogTitle_title}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_title}"/>
-                    <h:outputLabel value="#{bundle.EditBlogLabel_blogcol}" for="blogcol" />
-                    <h:inputText id="blogcol" value="#{blogController.selected.blogcol}" title="#{bundle.EditBlogTitle_blogcol}" />
+                    <h:outputLabel value="#{bundle.EditBlogLabel_collectedNum}" for="collectedNum" />
+                    <h:inputText id="collectedNum" value="#{blogController.selected.collectedNum}" title="#{bundle.EditBlogTitle_collectedNum}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_collectedNum}"/>
                     <h:outputLabel value="#{bundle.EditBlogLabel_categoryCategoryId}" for="categoryCategoryId" />
                     <h:selectOneMenu id="categoryCategoryId" value="#{blogController.selected.categoryCategoryId}" title="#{bundle.EditBlogTitle_categoryCategoryId}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_categoryCategoryId}">
                         <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
