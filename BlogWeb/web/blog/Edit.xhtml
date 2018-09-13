@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBlogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBlogLabel_blogNo}" for="blogNo" />
+                    <h:inputText id="blogNo" value="#{blogController.selected.blogNo}" title="#{bundle.EditBlogTitle_blogNo}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_blogNo}"/>
+                    <h:outputLabel value="#{bundle.EditBlogLabel_createdTime}" for="createdTime" />
+                    <h:inputText id="createdTime" value="#{blogController.selected.createdTime}" title="#{bundle.EditBlogTitle_createdTime}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_createdTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBlogLabel_label}" for="label" />
+                    <h:inputText id="label" value="#{blogController.selected.label}" title="#{bundle.EditBlogTitle_label}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_label}"/>
+                    <h:outputLabel value="#{bundle.EditBlogLabel_image}" for="image" />
+                    <h:inputText id="image" value="#{blogController.selected.image}" title="#{bundle.EditBlogTitle_image}" />
+                    <h:outputLabel value="#{bundle.EditBlogLabel_content}" for="content" />
+                    <h:inputText id="content" value="#{blogController.selected.content}" title="#{bundle.EditBlogTitle_content}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_content}"/>
+                    <h:outputLabel value="#{bundle.EditBlogLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{blogController.selected.title}" title="#{bundle.EditBlogTitle_title}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.EditBlogLabel_blogcol}" for="blogcol" />
+                    <h:inputText id="blogcol" value="#{blogController.selected.blogcol}" title="#{bundle.EditBlogTitle_blogcol}" />
+                    <h:outputLabel value="#{bundle.EditBlogLabel_categoryCategoryId}" for="categoryCategoryId" />
+                    <h:selectOneMenu id="categoryCategoryId" value="#{blogController.selected.categoryCategoryId}" title="#{bundle.EditBlogTitle_categoryCategoryId}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_categoryCategoryId}">
+                        <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBlogLabel_author}" for="author" />
+                    <h:selectOneMenu id="author" value="#{blogController.selected.author}" title="#{bundle.EditBlogTitle_author}" required="true" requiredMessage="#{bundle.EditBlogRequiredMessage_author}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{blogController.update}" value="#{bundle.EditBlogSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBlogViewLink}"/>
+                <br />
+                <h:commandLink action="#{blogController.prepareList}" value="#{bundle.EditBlogShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBlogIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
