@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>HomePage</title>
+        <link rel="stylesheet" href="styling.css"/>
+
+    </h:head>
+    <h:body>
+        <div id = "head" style="background-color: lightCyan">
+            <div id = "sign">
+                <button value="sign in" onClick = "location = 'signin1.xhtml'">
+                    sign in
+                </button>
+                <button value="sign in" onClick = "location = 'signup.xhtml'">
+                    sign up
+                </button>
+            </div>      
+        </div>
+        <hr/>
+        <div id = "body">
+            <div id = "left">
+                <h4 style="center">
+                    menu
+                </h4>
+                <label value="TvShow">
+                </label>
+
+                <h:form>
+                    <p:menu>
+                        <p:submenu label = "TvShow">
+                            <p:menuitem value="Euramerican" /> 
+
+                        </p:submenu> 
+                    </p:menu>
+                </h:form>
+                <h:form>
+                    <p:menu>
+                        <p:submenu label = "TvShow">
+                            <p:menuitem value="Euramerican" actionListener="#{categoryController.processBlog(TV_Play, Euramerican)}" /> 
+                            <p:menuitem value="Japanese" actionListener="#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>
+                            <p:menuitem value="Chinese" actionListener="#{categoryController.processBlog(TV_Play, Chinese)}"/>
+
+                        </p:submenu> 
+                    </p:menu>
+                </h:form>
+            </div>
+            <div id = "center">
+                <div id = "up-left">
+                    <h1> TV Show</h1>
+                </div>
+                <div id = "up-right">
+                    <h1> Movie</h1>
+                </div>
+                <div id ="bottom-left">
+                    <h1>Entertainment</h1>
+                </div>
+                <div id ="bottom-right">
+                    <h1>Cartoon</h1>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Header
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+
+                    
+
+
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListCategoryEmpty}" rendered="#{categoryController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{categoryController.items.rowCount > 0}">
+                            <h:outputText value="#{categoryController.pagination.pageFirstItem + 1}..#{categoryController.pagination.pageLastItem + 1}/#{categoryController.pagination.itemsCount}"/>&nbsp;
+                            <h:commandLink action="#{categoryController.previous}" value="#{bundle.Previous} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasPreviousPage}"/>&nbsp;
+                            <h:commandLink action="#{categoryController.next}" value="#{bundle.Next} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasNextPage}"/>&nbsp;
+                            <h:dataTable value="#{categoryController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCategoryTitle_category}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.category}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCategoryTitle_label}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.label}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListCategoryTitle_categoryId}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.categoryId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{categoryController.prepareView}" value="#{bundle.ListCategoryViewLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{categoryController.prepareEdit}" value="#{bundle.ListCategoryEditLink}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{categoryController.destroy}" value="#{bundle.ListCategoryDestroyLink}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                        <br />
+                        <h:commandLink action="#{categoryController.prepareCreate}" value="#{bundle.ListCategoryCreateLink}"/>
+                        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.ListCategoryIndexLink}"/>
+                    </h:form>
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <p:button outcome = "Euramerican" onclick = "#{categoryController.processBlog(TV_Show, Euramerican)}"/>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
