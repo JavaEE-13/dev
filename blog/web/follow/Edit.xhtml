@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFollowTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFollowLabel_messageMessageNo}" for="messageMessageNo" />
+                    <h:selectOneMenu id="messageMessageNo" value="#{followController.selected.messageMessageNo}" title="#{bundle.EditFollowTitle_messageMessageNo}" required="true" requiredMessage="#{bundle.EditFollowRequiredMessage_messageMessageNo}">
+                        <f:selectItems value="#{notifyController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFollowLabel_user}" for="user" />
+                    <h:selectOneMenu id="user" value="#{followController.selected.user}" title="#{bundle.EditFollowTitle_user}" required="true" requiredMessage="#{bundle.EditFollowRequiredMessage_user}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFollowLabel_user1}" for="user1" />
+                    <h:selectOneMenu id="user1" value="#{followController.selected.user1}" title="#{bundle.EditFollowTitle_user1}" required="true" requiredMessage="#{bundle.EditFollowRequiredMessage_user1}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{followController.update}" value="#{bundle.EditFollowSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFollowViewLink}"/>
+                <br />
+                <h:commandLink action="#{followController.prepareList}" value="#{bundle.EditFollowShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFollowIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

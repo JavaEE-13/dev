@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        </link>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class = "my-2 my-lg-0">
+                        <button type="button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
+                            sign in
+                        </button>
+                        <button type="button" class="btn btn-secondary" onClick = "location = 'signup.xhtml'">
+                            sign up
+                        </button>
+                        <button onClick = "location = 'homePage.xhtml'">
+                            homePage
+                        </button>
+                        <button onClick = "location = 'myProfile.html'">
+                            Self Center
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        Hello from Facelets
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces 欢迎使用页" />
+        <br />
+        <h:link outcome="/admin/List" value="Show All Admin Items"/>
+        <br />
+        <h:link outcome="/blog/List" value="Show All Blog Items"/>
+        <br />
+        <h:link outcome="/category/List" value="Show All Category Items"/>
+        <br />
+        <h:link outcome="/collect/List" value="Show All Collect Items"/>
+        <br />
+        <h:link outcome="/comment/List" value="Show All Comment Items"/>
+        <br />
+        <h:link outcome="/follow/List" value="Show All Follow Items"/>
+        <br />
+        <h:link outcome="/notify/List" value="Show All Notify Items"/>
+        <br />
+        <h:link outcome="/user/List" value="Show All User Items"/>
+    </h:body>
+<br />
+<br />
+<br />
+
+<button value="HomePage" onClick = "location = 'homePage.xhtml'">
+                homePage
+            </button>
+
+
+
+
+
+
+</html>
+

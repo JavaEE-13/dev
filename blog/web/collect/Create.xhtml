@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCollectTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+<!--                    <h:outputLabel value="#{bundle.CreateCollectLabel_collectNo}" for="collectNo" />
+                    <h:inputText id="collectNo" value="#{collectController.selected.collectNo}" title="#{bundle.CreateCollectTitle_collectNo}" required="true" requiredMessage="#{bundle.CreateCollectRequiredMessage_collectNo}"/>-->
+                    <h:outputLabel value="#{bundle.CreateCollectLabel_blogBlogNo}" for="blogBlogNo" />
+                    <h:selectOneMenu id="blogBlogNo" value="#{collectController.selected.blogBlogNo}" title="#{bundle.CreateCollectTitle_blogBlogNo}" required="true" requiredMessage="#{bundle.CreateCollectRequiredMessage_blogBlogNo}">
+                        <f:selectItems value="#{blogController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCollectLabel_userUserNo}" for="userUserNo" />
+                    <h:selectOneMenu id="userUserNo" value="#{collectController.selected.userUserNo}" title="#{bundle.CreateCollectTitle_userUserNo}" required="true" requiredMessage="#{bundle.CreateCollectRequiredMessage_userUserNo}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCollectLabel_messageMessageNo}" for="messageMessageNo" />
+                    <h:selectOneMenu id="messageMessageNo" value="#{collectController.selected.messageMessageNo}" title="#{bundle.CreateCollectTitle_messageMessageNo}" required="true" requiredMessage="#{bundle.CreateCollectRequiredMessage_messageMessageNo}">
+                        <f:selectItems value="#{notifyController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{collectController.create}" value="#{bundle.CreateCollectSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{collectController.prepareList}" value="#{bundle.CreateCollectShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCollectIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

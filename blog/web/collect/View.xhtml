@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCollectTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCollectLabel_collectNo}"/>
+                    <h:outputText value="#{collectController.selected.collectNo}" title="#{bundle.ViewCollectTitle_collectNo}"/>
+                    <h:outputText value="#{bundle.ViewCollectLabel_blogBlogNo}"/>
+                    <h:outputText value="#{collectController.selected.blogBlogNo}" title="#{bundle.ViewCollectTitle_blogBlogNo}"/>
+                    <h:outputText value="#{bundle.ViewCollectLabel_userUserNo}"/>
+                    <h:outputText value="#{collectController.selected.userUserNo}" title="#{bundle.ViewCollectTitle_userUserNo}"/>
+                    <h:outputText value="#{bundle.ViewCollectLabel_messageMessageNo}"/>
+                    <h:outputText value="#{collectController.selected.messageMessageNo}" title="#{bundle.ViewCollectTitle_messageMessageNo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{collectController.destroyAndView}" value="#{bundle.ViewCollectDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCollectEditLink}"/>
+                <br />
+                <h:commandLink action="#{collectController.prepareCreate}" value="#{bundle.ViewCollectCreateLink}" />
+                <br />
+                <h:commandLink action="#{collectController.prepareList}" value="#{bundle.ViewCollectShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCollectIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

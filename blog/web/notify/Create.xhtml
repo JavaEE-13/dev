@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateNotifyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+<!--                    <h:outputLabel value="#{bundle.CreateNotifyLabel_notifyNo}" for="notifyNo" />
+                    <h:inputText id="notifyNo" value="#{notifyController.selected.notifyNo}" title="#{bundle.CreateNotifyTitle_notifyNo}" required="true" requiredMessage="#{bundle.CreateNotifyRequiredMessage_notifyNo}"/>-->
+                    <h:outputLabel value="#{bundle.CreateNotifyLabel_class1}" for="class1" />
+                    <h:inputText id="class1" value="#{notifyController.selected.class1}" title="#{bundle.CreateNotifyTitle_class1}" required="true" requiredMessage="#{bundle.CreateNotifyRequiredMessage_class1}"/>
+                    <h:outputLabel value="#{bundle.CreateNotifyLabel_flag}" for="flag" />
+                    <h:inputText id="flag" value="#{notifyController.selected.flag}" title="#{bundle.CreateNotifyTitle_flag}" required="true" requiredMessage="#{bundle.CreateNotifyRequiredMessage_flag}"/>
+                    <h:outputLabel value="#{bundle.CreateNotifyLabel_userUserNo}" for="userUserNo" />
+                    <h:selectOneMenu id="userUserNo" value="#{notifyController.selected.userUserNo}" title="#{bundle.CreateNotifyTitle_userUserNo}" required="true" requiredMessage="#{bundle.CreateNotifyRequiredMessage_userUserNo}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{notifyController.create}" value="#{bundle.CreateNotifySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{notifyController.prepareList}" value="#{bundle.CreateNotifyShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNotifyIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

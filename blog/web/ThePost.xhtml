@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{postController.selected.postPK.postName}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+         
+            <p:outputPanel style="width: 100%;height: 300px">
+                
+                
+                <p:scrollPanel style="width:100%;height:100px"> 
+                    <p:outputPanel>
+                        #{postController.selected.postContent}
+                    </p:outputPanel>
+                     
+                </p:scrollPanel>
+                <p:scrollPanel style="width:100%;height:200px"> 
+                    <h:form>
+                        <h:dataTable value="#{replyController.items}" var="item" border="10" cellpadding="20" rules="all" style="border:solid 0px" width="100%"   >
+                        <h:column>
+                            <h:outputText value="${replyController.MygetReply(postController.selected.postPK.postName)}"></h:outputText>
+                        </h:column>
+
+                    </h:dataTable>
+            
+                        </h:form>
+                </p:scrollPanel>
+            
+            </p:outputPanel>
+            <br/>
+            <h:form> 
+             
+                <p:editor id="editor" widgetVar="editorWidget" value="#{replyController.selected.replyContent}" required="true" requiredMessage="请输入回帖内容！！！" width="600" maxlength="200"/>
+ 
+                <h:panelGrid columns="2" style="margin-top: 10px">
+                    <p:commandButton value="回复" oncomplete="PF('dlg').show()" action="ThePost"/>
+              </h:panelGrid>
+            </h:form>
+                   
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </ui:define>
+    </ui:composition>
+
+</html>    
+            

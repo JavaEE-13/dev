@@ -1,0 +1,63 @@
+.head{
+    height: 200px;
+    background: url();
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.header-table img{
+    vertical-align: middle;
+    border-radius: 130px;
+    margin-left: 50px;
+    box-shadow: rgba(0,0,0,0.3) 3px 4px 3px;
+}
+.pname{
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.signature{
+    margin-top: 40px;
+    margin-left: 20px;
+}
+.returnd {
+   float: right;
+   margin-right: 30px;
+   margin-top: 0px;
+}
+.returnd h2{
+    font-size: 12px;
+    font-weight: 200
+}
+.colnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #00C37E;
+}
+
+.colnav ul li {
+    float: left;
+}
+
+.colnav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+.art{
+    margin-left: 30px;
+}
+.colnav ul li a:hover {
+    background-color: #FFE4C4;
+}
+.mmenu{
+    width: 900px;
+    margin: 0 auto;
+    background: #C0C0C0;
+}
+.tname{
+    margin-top: 30px;
+    margin-left: 60px;
+}

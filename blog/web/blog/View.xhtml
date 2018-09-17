@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBlogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBlogLabel_blogNo}"/>
+                    <h:outputText value="#{blogController.selected.blogNo}" title="#{bundle.ViewBlogTitle_blogNo}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_createdTime}"/>
+                    <h:outputText value="#{blogController.selected.createdTime}" title="#{bundle.ViewBlogTitle_createdTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBlogLabel_label}"/>
+                    <h:outputText value="#{blogController.selected.label}" title="#{bundle.ViewBlogTitle_label}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_image}"/>
+                    <h:outputText value="#{blogController.selected.image}" title="#{bundle.ViewBlogTitle_image}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_content}"/>
+                    <h:outputText value="#{blogController.selected.content}" title="#{bundle.ViewBlogTitle_content}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_title}"/>
+                    <h:outputText value="#{blogController.selected.title}" title="#{bundle.ViewBlogTitle_title}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_collectedNum}"/>
+                    <h:outputText value="#{blogController.selected.collectedNum}" title="#{bundle.ViewBlogTitle_collectedNum}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_diyLabel}"/>
+                    <h:outputText value="#{blogController.selected.diyLabel}" title="#{bundle.ViewBlogTitle_diyLabel}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_categoryCategoryId}"/>
+                    <h:outputText value="#{blogController.selected.categoryCategoryId}" title="#{bundle.ViewBlogTitle_categoryCategoryId}"/>
+                    <h:outputText value="#{bundle.ViewBlogLabel_author}"/>
+                    <h:outputText value="#{blogController.selected.author}" title="#{bundle.ViewBlogTitle_author}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{blogController.destroyAndView}" value="#{bundle.ViewBlogDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBlogEditLink}"/>
+                <br />
+                <h:commandLink action="#{blogController.prepareCreate}" value="#{bundle.ViewBlogCreateLink}" />
+                <br />
+                <h:commandLink action="#{blogController.prepareList}" value="#{bundle.ViewBlogShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBlogIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
