@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByUserNo", query = "SELECT u FROM User u WHERE u.userNo = :userNo")
     , @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName")
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.matchUser", query = "SELECT u FROM User u WHERE u.userName = :userName AND u.password = :password")
     , @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender")
     , @NamedQuery(name = "User.findByProfile", query = "SELECT u FROM User u WHERE u.profile = :profile")
     , @NamedQuery(name = "User.findByPersonalSign", query = "SELECT u FROM User u WHERE u.personalSign = :personalSign")
@@ -91,19 +92,21 @@ public class User implements Serializable {
     private Collection<Notify> notifyCollection;
 
     public User() {
+        followerNum = 0;
+        unreadMessageNum = 0;
     }
 
     public User(Integer userNo) {
         this.userNo = userNo;
     }
 
-    public User(Integer userNo, String userName, String password, String gender, int followerNum, int unreadMessageNum) {
+    public User(Integer userNo, String userName, String password, String gender) {
         this.userNo = userNo;
         this.userName = userName;
         this.password = password;
         this.gender = gender;
-        this.followerNum = followerNum;
-        this.unreadMessageNum = unreadMessageNum;
+        this.followerNum = 0;
+        this.unreadMessageNum = 0;
     }
 
     public Integer getUserNo() {
@@ -248,5 +251,5 @@ public class User implements Serializable {
     public String toString() {
         return "Entity.User[ userNo=" + userNo + " ]";
     }
-    
+
 }

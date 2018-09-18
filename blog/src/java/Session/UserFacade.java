@@ -5,10 +5,12 @@
  */
 package Session;
 
+import Entity.Admin;
 import Entity.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,13 @@ public class UserFacade extends AbstractFacade<User> {
 
     public UserFacade() {
         super(User.class);
+    }
+
+    public User matchAdmin(String username, String password) {
+        Query query = em.createNamedQuery("User.matchUser");
+        query.setParameter("userName", username);
+        query.setParameter("passWord", password);
+        return (User)query.getSingleResult();
     }
     
 }

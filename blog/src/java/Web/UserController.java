@@ -10,17 +10,21 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
 
 @Named("userController")
 @SessionScoped
-public class UserController implements Serializable {
+public class UserController implements Serializable, Validator {
 
     private User current;
     private DataModel items = null;
@@ -28,6 +32,63 @@ public class UserController implements Serializable {
     private Session.UserFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+
+    private String username;
+    private String password;
+
+    private String passwordConfirm;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void getUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getpasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordComfirm) {
+        this.passwordConfirm = passwordComfirm;
+    }
+
+    public String processSignIn() {
+        try {
+            current = ejbFacade.matchAdmin(this.username, this.password);
+            return "index.xhtml";
+        } catch (Exception e) {
+            current = null;
+        }
+        return null;
+    }
+
+    public void validate(FacesContext context, UIComponent component,
+            Object value) throws ValidatorException {
+        UIComponent c = null;
+
+        for (UIComponent ui : component.getParent().getChildren()) {
+            if ("password".equals(ui.getId())) {
+                c = ui;
+                break;
+            }
+
+            HtmlInputText htmlInputText = (HtmlInputText) c;
+            if (!value.toString().trim().equals(htmlInputText.toString().trim())) {
+                FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("/Bundle").getString("PasswordDoNotMatch"));
+                throw new ValidatorException(msg);
+            }
+        }
+    }
 
     public UserController() {
     }
@@ -79,8 +140,33 @@ public class UserController implements Serializable {
         return "Create";
     }
 
+    public String prepareSignUp() {
+        current = new User();
+        selectedItemIndex = -1;
+        return "signin.xhtml";
+    }
+
+    public String signup() {
+        try {
+            if (passwordConfirm == null ? current.getPassword() != null : !passwordConfirm.equals(current.getPassword())) {
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PasswordDoNotMatch"));
+                return null;
+            }
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+            return prepareSignUp();
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
     public String create() {
         try {
+            if (passwordConfirm == null ? current.getPassword() != null : !passwordConfirm.equals(current.getPassword())) {
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PasswordDoNotMatch"));
+                return null;
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
