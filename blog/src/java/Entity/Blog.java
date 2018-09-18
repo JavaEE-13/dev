@@ -5,7 +5,11 @@
  */
 package Entity;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -39,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Blog.findAll", query = "SELECT b FROM Blog b")
     , @NamedQuery(name = "Blog.findByBlogNo", query = "SELECT b FROM Blog b WHERE b.blogNo = :blogNo")
     , @NamedQuery(name = "Blog.findByCreatedTime", query = "SELECT b FROM Blog b WHERE b.createdTime = :createdTime")
-    , @NamedQuery(name = "Blog.findByLabel", query = "SELECT b FROM Blog b WHERE b.label = :label")
+    , @NamedQuery(name = "Blog.findBlogByCateAndLabel", query = "SELECT b FROM Blog b WHERE b.label = :label AND b.categoryCategoryId = :catogoryId")        
     , @NamedQuery(name = "Blog.findByImage", query = "SELECT b FROM Blog b WHERE b.image = :image")
     , @NamedQuery(name = "Blog.findByContent", query = "SELECT b FROM Blog b WHERE b.content = :content")
     , @NamedQuery(name = "Blog.findByTitle", query = "SELECT b FROM Blog b WHERE b.title = :title")
@@ -101,13 +105,23 @@ public class Blog implements Serializable {
         this.blogNo = blogNo;
     }
 
-    public Blog(Integer blogNo, Date createdTime, String label, String content, String title, int collectedNum) {
-        this.blogNo = blogNo;
-        this.createdTime = createdTime;
-        this.label = label;
-        this.content = content;
-        this.title = title;
-        this.collectedNum = collectedNum;
+    public Blog(String label, String content, String title) {
+        try {
+            URL url = new URL("http://www.beijing-time.org");
+            URLConnection conn = url.openConnection();
+            conn.connect();
+            long dateL = conn.getDate();
+            this.createdTime = new Date(dateL);
+            this.label = label;
+            this.content = content;
+            this.title = title;
+            this.collectedNum = 0;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
     }
 
     public Integer getBlogNo() {
@@ -232,5 +246,5 @@ public class Blog implements Serializable {
     public String toString() {
         return "Entity.Blog[ blogNo=" + blogNo + " ]";
     }
-    
+
 }

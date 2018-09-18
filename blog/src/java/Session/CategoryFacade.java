@@ -6,9 +6,11 @@
 package Session;
 
 import Entity.Category;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,20 @@ public class CategoryFacade extends AbstractFacade<Category> {
     public CategoryFacade() {
         super(Category.class);
     }
-    
+
+    public List findBlogByCateAndLabel(String cate, String label) {
+        Query query = em.createNamedQuery("Category.findByCateAndLabel");
+        query.setParameter("label", label);
+        query.setParameter("cate", cate);
+        List blogCollection = null;
+        try {
+            Category category = (Category) query.getSingleResult();
+            blogCollection = (List) category.getBlogCollection();
+        } catch (Exception e) {
+            return blogCollection;
+        }
+
+        return blogCollection;
+    }
+
 }

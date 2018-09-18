@@ -6,6 +6,7 @@ import Web.util.PaginationHelper;
 import Session.CategoryFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -30,6 +31,10 @@ public class CategoryController implements Serializable {
     private int selectedItemIndex;
 
     public CategoryController() {
+    }
+    
+    public List processBlog(String cate, String Label){
+        return ejbFacade.findBlogByCateAndLabel(cate, Label);
     }
 
     public Category getSelected() {

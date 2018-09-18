@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,9 +35,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
     , @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId")
     , @NamedQuery(name = "Category.findByCategory", query = "SELECT c FROM Category c WHERE c.category = :category")
-    , @NamedQuery(name = "Category.findByLabel", query = "SELECT c FROM Category c WHERE c.label = :label")})
+    , @NamedQuery(name = "Category.findByCateAndLabel", query = "SELECT c FROM Category c WHERE c.category = :cate AND c.label = :label")})
 public class Category implements Serializable {
 
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,7 +103,7 @@ public class Category implements Serializable {
     public void setBlogCollection(Collection<Blog> blogCollection) {
         this.blogCollection = blogCollection;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

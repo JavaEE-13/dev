@@ -19,8 +19,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class = "my-2 my-lg-0">
-                        <h:link value = "sign in" rendered = "#{userController.selected == null}" outcome = "signin.xhtml"/>
-                        <h:link value = "#{userController.selected.userName}" rendered ="#{userController.selected != null}" outcome = "myprofile.xhtml"/>  
+                        <h:link value = "sign in" rendered = "#{userController.selected == null}" 
+                                outcome = "signin.xhtml"/>
+                        <h:link value = "#{userController.selected.userName}" 
+                                rendered ="#{userController.selected != null}" 
+                                outcome = "myprofile.xhtml"/>  
                         <button type = "button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
                             sign in
                         </button>
@@ -42,15 +45,29 @@
                     menu
                 </h4>
 
-                <h:button value ="Euramerican" outcome = "#{categoryController.processBlog(TV_Play, Euramerican)}"/>
-                <h:button value = "Japanese And Korean" outcome = "#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>
+<!--                <h:button value ="Euramerican" outcome = "#{categoryController.processBlog(TV_Play, Euramerican)}"/>
+                <h:button value = "Japanese And Korean" outcome = "#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>-->
 
                 <h:form>
                     <p:menu>
                         <p:submenu label = "TvShow" >
-                            <p:menuitem value="Euramerican" actionListener="#{categoryController.processBlog(TV_Play, Euramerican)}"/> 
+                            <p:menuitem value="Euramerican"/> 
                             <p:menuitem value="Japanese And Korean"/>
+                            <p:menuitem value="Chinese"/>
                         </p:submenu> 
+                        <p:submenu label = "Movie" >
+                            <p:menuitem value="Comedy" /> 
+                            <p:menuitem value="Suspense"/>
+                            <p:menuitem value="Action"/>
+                        </p:submenu> 
+                        <p:submenu label = "Variety" >
+                            <p:menuitem value="Sports" /> 
+                            <p:menuitem value="Talk Show"/>
+                            <p:menuitem value="Emotion"/>
+                        </p:submenu>
+                        <p:submenu label = "Animation" >
+                            
+                        </p:submenu>
                     </p:menu>
                 </h:form>
                 <!--                <h:form>

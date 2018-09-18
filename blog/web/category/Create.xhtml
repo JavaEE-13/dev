@@ -15,17 +15,33 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-
+<!--                    <h:outputLabel value="#{bundle.CreateCategoryLabel_categoryId}" for="category" />
+                    
+                    <h:inputText id="categoryId" value="#{categoryController.selected.categoryId}" 
+                                 title="#{bundle.CreateCategoryTitle_categoryId}" 
+                                 required="true" 
+                                 requiredMessage="#{bundle.CreateCategoryRequiredMessage_categoryId}"/>-->
+                    
                     <h:outputLabel value="#{bundle.CreateCategoryLabel_category}" for="category" />
-                    <h:inputText id="category" value="#{categoryController.selected.category}" title="#{bundle.CreateCategoryTitle_category}" required="true" requiredMessage="#{bundle.CreateCategoryRequiredMessage_category}"/>
+                    
+                    <h:inputText id="category" value="#{categoryController.selected.category}" 
+                                 title="#{bundle.CreateCategoryTitle_category}" 
+                                 required="true" 
+                                 requiredMessage="#{bundle.CreateCategoryRequiredMessage_category}"/>
+                    
                     <h:outputLabel value="#{bundle.CreateCategoryLabel_label}" for="label" />
-                    <h:inputText id="label" value="#{categoryController.selected.label}" title="#{bundle.CreateCategoryTitle_label}" required="true" requiredMessage="#{bundle.CreateCategoryRequiredMessage_label}"/>
+                    
+                    <h:inputText id="label" value="#{categoryController.selected.label}" 
+                                 title="#{bundle.CreateCategoryTitle_label}" 
+                                 required="true" 
+                                 requiredMessage="#{bundle.CreateCategoryRequiredMessage_label}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{categoryController.create}" value="#{bundle.CreateCategorySaveLink}" />
                 <br />
                 <br />
-                <h:commandLink action="#{categoryController.prepareList}" value="#{bundle.CreateCategoryShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{categoryController.prepareList}" value="#{bundle.CreateCategoryShowAllLink}" 
+                               immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.CreateCategoryIndexLink}"/>
