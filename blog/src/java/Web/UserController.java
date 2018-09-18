@@ -33,17 +33,17 @@ public class UserController implements Serializable, Validator {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    private String username;
+    private String userName;
     private String password;
 
     private String passwordConfirm;
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void getUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -64,8 +64,9 @@ public class UserController implements Serializable, Validator {
 
     public String processSignIn() {
         try {
-            current = ejbFacade.matchAdmin(this.username, this.password);
-            return "index.xhtml";
+            current = ejbFacade.matchUser(this.userName, this.password);
+            System.out.println(current.getUserName());
+            return "/homePageLogIn.xhtml";
         } catch (Exception e) {
             current = null;
         }

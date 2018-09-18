@@ -14,19 +14,14 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateAdminLabel_userName}" for="userName" />
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_userName}" for="userName:" />
                     <h:inputText id="userName" value="#{adminController.adminName}" title="#{bundle.CreateAdminTitle_userName}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_userName}"/>
-                    <h:outputLabel value="#{bundle.CreateAdminLabel_passWord}" for="passWord" />
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_passWord}" for="passWord:" />
                     <h:inputSecret id="passWord" value="#{adminController.password}" title="#{bundle.CreateAdminTitle_passWord}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_passWord}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{adminController.processSignInAsAdmin}" value="Sign In" />
-                <br />
-                <br />
-                <h:commandLink action="#{adminController.prepareList}" value="#{bundle.CreateAdminShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateAdminIndexLink}"/>
+                
             </h:form>
     </h:body>
 </html>

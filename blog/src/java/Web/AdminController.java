@@ -54,7 +54,7 @@ public class AdminController implements Serializable {
     public String processSignInAsAdmin() {
         try {
             current = ejbFacade.matchAdmin(this.adminName, this.password);
-            return "index.xhtml";
+            return "/index.xhtml";
         }catch(Exception e){
             current = null;
         }    

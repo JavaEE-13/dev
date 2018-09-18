@@ -31,10 +31,10 @@ public class UserFacade extends AbstractFacade<User> {
         super(User.class);
     }
 
-    public User matchAdmin(String username, String password) {
+    public User matchUser(String username, String password) {
         Query query = em.createNamedQuery("User.matchUser");
         query.setParameter("userName", username);
-        query.setParameter("passWord", password);
+        query.setParameter("password", password);
         return (User)query.getSingleResult();
     }
     

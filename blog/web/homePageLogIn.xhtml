@@ -7,7 +7,6 @@
         <title>HomePage</title>
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
         <link rel="stylesheet" href="resources/css/styling.css" type="text/css" />
-
     </h:head>
     <h:body>
         <header>
@@ -19,18 +18,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class = "my-2 my-lg-0">
-                        <h:link value = "sign in" rendered = "#{userController.selected == null}" outcome = "signin.xhtml"/>
-                        <h:link value = "#{userController.selected.userName}" rendered ="#{userController.selected != null}" outcome = "myprofile.xhtml"/>  
-                        <button type = "button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
-                            sign in
-                        </button>
-                        <button type = "button" class="btn btn-dark" onClick = "location = 'signup.xhtml'">
-                            sign up
-                        </button>
-                        <button type="button" class="btn btn-light" onClick = "location = 'admin/adminSignIn.xhtml'">
-                            as admin
-                        </button>
-
+                        <h:outputText value = "#{userController.selected.userName}"/>                                               
                     </div>
                 </div>
             </nav>
