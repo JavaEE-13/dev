@@ -15,8 +15,7 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateCategoryLabel_categoryId}" for="categoryId" />
-                    <h:inputText id="categoryId" value="#{categoryController.selected.categoryId}" title="#{bundle.CreateCategoryTitle_categoryId}" required="true" requiredMessage="#{bundle.CreateCategoryRequiredMessage_categoryId}"/>
+
                     <h:outputLabel value="#{bundle.CreateCategoryLabel_category}" for="category" />
                     <h:inputText id="category" value="#{categoryController.selected.category}" title="#{bundle.CreateCategoryTitle_category}" required="true" requiredMessage="#{bundle.CreateCategoryRequiredMessage_category}"/>
                     <h:outputLabel value="#{bundle.CreateCategoryLabel_label}" for="label" />

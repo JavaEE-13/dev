@@ -5,20 +5,34 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>HomePage</title>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
         <link rel="stylesheet" href="resources/css/styling.css" type="text/css" />
 
     </h:head>
     <h:body>
-        <div id = "head" style="background-color: lightCyan">
-            <div id = "sign">
-                <button value="sign in" onClick = "location = 'signin.xhtml'">
-                    sign in
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <button value="sign in" onClick = "location = 'signup.xhtml'">
-                    sign up
-                </button>
-            </div>      
-        </div>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class = "my-2 my-lg-0">
+                        <button type="button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
+                            sign in
+                        </button>
+                        <button onClick = "location = 'signup.xhtml'">
+                            sign up
+                        </button>
+                        <button type="button" class="btn btn-light" onClick = "location = 'admin/adminSignUp.xhtml'">
+                            as admin
+                        </button>
+
+                    </div>
+                </div>
+            </nav>
+        </header>
         <hr/>
         <div id = "body">
             <div id = "left">
@@ -39,16 +53,16 @@
                         </p:submenu> 
                     </p:menu>
                 </h:form>
-                <h:form>
-                    <p:menu>
-                        <p:submenu label = "TvShow">
-                            <p:menuitem value="Euramerican" actionListener="#{categoryController.processBlog(TV_Play, Euramerican)}" /> 
-                            <p:menuitem value="Japanese" actionListener="#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>
-                            <p:menuitem value="Chinese" actionListener="#{categoryController.processBlog(TV_Play, Chinese)}"/>
-
-                        </p:submenu> 
-                    </p:menu>
-                </h:form>
+                <!--                <h:form>
+                                    <p:menu>
+                                        <p:submenu label = "TvShow">
+                                            <p:menuitem value="Euramerican" actionListener="#{categoryController.processBlog(TV_Play, Euramerican)}" /> 
+                                            <p:menuitem value="Japanese" actionListener="#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>
+                                            <p:menuitem value="Chinese" actionListener="#{categoryController.processBlog(TV_Play, Chinese)}"/>
+                
+                                        </p:submenu> 
+                                    </p:menu>
+                                </h:form>-->
             </div>
             <div id = "center">
                 <div id = "up-left">

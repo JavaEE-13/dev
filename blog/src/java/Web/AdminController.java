@@ -29,7 +29,36 @@ public class AdminController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    protected String adminName;
+    protected String password;
+    
+    public String getAdminName(){
+        return adminName;
+    }
+    
+    public void setAdminName(String adminName){
+        this.adminName = adminName;
+    }
+       
+    public String getPassword(){
+        return password;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
+    }
+    
     public AdminController() {
+    }
+
+    public String processSignInAsAdmin() {
+        try {
+            current = ejbFacade.matchAdmin(this.adminName, this.password);
+            return "index.xhtml";
+        }catch(Exception e){
+            current = null;
+        }    
+        return null;
     }
 
     public Admin getSelected() {

@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Admin.findAll", query = "SELECT a FROM Admin a")
     , @NamedQuery(name = "Admin.findByAdminNo", query = "SELECT a FROM Admin a WHERE a.adminNo = :adminNo")
     , @NamedQuery(name = "Admin.findByUserName", query = "SELECT a FROM Admin a WHERE a.userName = :userName")
-    , @NamedQuery(name = "Admin.findByPassWord", query = "SELECT a FROM Admin a WHERE a.passWord = :passWord")})
+    , @NamedQuery(name = "Admin.findByPassWord", query = "SELECT a FROM Admin a WHERE a.passWord = :passWord")
+    , @NamedQuery(name = "Admin.matchAdmin", query = "SELECT a from Admin a WHERE a.passWord = :passWord AND a.userName = :userName")})
 public class Admin implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -75,8 +76,8 @@ public class Admin implements Serializable {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String UserName) {
+        this.userName = UserName;
     }
 
     public String getPassWord() {
@@ -111,5 +112,5 @@ public class Admin implements Serializable {
     public String toString() {
         return "Entity.Admin[ adminNo=" + adminNo + " ]";
     }
-    
+
 }

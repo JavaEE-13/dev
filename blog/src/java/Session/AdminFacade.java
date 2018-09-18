@@ -9,6 +9,7 @@ import Entity.Admin;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,13 @@ public class AdminFacade extends AbstractFacade<Admin> {
 
     public AdminFacade() {
         super(Admin.class);
+    }
+
+    public Admin matchAdmin(String adminName, String password) {
+        Query query = em.createNamedQuery("Admin.matchAdmin");
+        query.setParameter("userName", adminName);
+        query.setParameter("passWord", password);
+        return (Admin)query.getSingleResult();
     }
     
 }

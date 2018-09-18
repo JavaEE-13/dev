@@ -13,17 +13,25 @@
             <h2>
                 <h:outputText value="sign in"/>
             </h2>
-            <h:panelGrid border="2" columns="2" style="font-size: 24px;">
-                <h:outputText value="User Name:"/>
-                <h:inputText  required = "true" />
-                <p/>
-                <h:outputText value="Password:"/>
-                <h:inputText  required = "true"/>
-                <p/>
-            </h:panelGrid>
-            <p/>
-            <h:commandButton value="submit" 
-                             action="#{userController.processSignIn}"/>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_userName}" for="userName:" />
+                    <h:inputText id="userName" value="#{userController.username}" title="#{bundle.CreateUserTitle_userName}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_userName}"/>
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_passWord}" for="passWord:" />
+                    <h:inputSecret id="passWord" value="#{userController.password}" title="#{bundle.CreateUserTitle_passWord}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_passWord}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userController.processSignIn}" value="Sign In" />
+                <br />
+                <br />
+                <h:commandLink action="#{userController.prepareList}" value="#{bundle.CreateUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAdminIndexLink}"/>
+            </h:form>
 
         </h:form> 
 
