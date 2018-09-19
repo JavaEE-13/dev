@@ -6,6 +6,8 @@
 package Session;
 
 import Entity.Blog;
+import Entity.Category;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,9 +33,17 @@ public class BlogFacade extends AbstractFacade<Blog> {
         super(Blog.class);
     }
 
-    public List getHotBlogs() {
-        Query query = em.createNamedQuery("Blog.fingHot"); 
+    public List getBlogsByCate(Category cate) {
+        Query query = em.createNamedQuery("Blog.fingBlogByCate");
+        query.setParameter("cate", cate);
+//        List<Blog> blogs = query.getResultList();
+//        return blogs;
         return query.getResultList();
     }
-    
+
+    public List getHotBlogs() {
+        Query query = em.createNamedQuery("Blog.fingHot");
+        return query.getResultList();
+    }
+
 }

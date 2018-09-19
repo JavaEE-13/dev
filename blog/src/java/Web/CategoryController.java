@@ -7,8 +7,10 @@ import Web.util.PaginationHelper;
 import Session.CategoryFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,10 +35,16 @@ public class CategoryController implements Serializable {
     private DataModel items = null;
     @EJB
     private Session.CategoryFacade ejbFacade;
+    
+    @EJB
+    private Session.BlogFacade blogFacade;
+    
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     private List<Category> cateList;
+
+//    private BlogController bControl;
 
     public CategoryController() {
     }
@@ -51,12 +59,31 @@ public class CategoryController implements Serializable {
 
     public Collection<Blog> getBlogByCategory(String cate) {
         cateList = ejbFacade.findBlogByCategory(cate);
+
         int size = cateList.size();
-        Collection<Blog> blog = null;
-        for (int i = 0; i < size; i++) {
-            blog = cateList.get(i).getBlogCollection();
+//        bControl = new BlogController();
+        Collection<Blog> blogC = new ArrayList<>();
+        for (Category c: cateList) {
+            try {
+                blogC.addAll(c.getBlogCollection());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return blog;
+        try {
+            System.out.println("BlogSize");
+            System.out.println(blogC.size());
+            Iterator iterator = blogC.iterator();
+            while (iterator.hasNext()) {
+
+                Blog blog = (Blog) iterator.next();
+                System.out.println(blog.getTitle());
+            }
+        } catch (Exception e) {
+
+        }
+
+        return blogC;
     }
 
     public String getBlogByCategoryId(int cateId) {

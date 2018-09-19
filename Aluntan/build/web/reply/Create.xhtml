@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateReplyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateReplyLabel_replyId}" for="replyId" />
+                    <h:inputText id="replyId" value="#{replyController.selected.replyId}" title="#{bundle.CreateReplyTitle_replyId}" required="flase" requiredMessage="#{bundle.CreateReplyRequiredMessage_replyId}"/>
+                    <h:outputLabel value="#{bundle.CreateReplyLabel_replyContent}" for="replyContent" />
+                    <h:inputTextarea rows="4" cols="30" id="replyContent" value="#{replyController.selected.replyContent}" title="#{bundle.CreateReplyTitle_replyContent}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_replyContent}"/>
+                    <h:outputLabel value="#{bundle.CreateReplyLabel_post}" for="post" />
+                    <h:selectOneMenu id="post" value="#{replyController.selected.post}" title="#{bundle.CreateReplyTitle_post}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_post}">
+                        <f:selectItems value="#{postController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{replyController.create}" value="#{bundle.CreateReplySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{replyController.prepareList}" value="#{bundle.CreateReplyShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateReplyIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

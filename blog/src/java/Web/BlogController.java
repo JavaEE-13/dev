@@ -1,6 +1,8 @@
 package Web;
 
 import Entity.Blog;
+import Entity.Category;
+
 import Web.util.JsfUtil;
 import Web.util.PaginationHelper;
 import Session.BlogFacade;
@@ -30,13 +32,23 @@ public class BlogController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    private Collection<Blog> hot;
-    
+    private Collection<Blog> hots;
+    //private Collection<Blog> blogsByCate;
+            
     public BlogController() {
     }
 
     public void getHot(){
-        hot = ejbFacade.getHotBlogs();
+        hots = ejbFacade.getHotBlogs();
+    }
+    
+    
+    public Collection<Blog> getBlogsByCategoryId(Category cate){
+       Collection<Blog> blogsByCate = ejbFacade.getBlogsByCate(cate);
+       System.out.print("blog controller:");
+       System.out.println(blogsByCate.size());
+       
+       return blogsByCate;
     }
     
     public Blog getSelected() {

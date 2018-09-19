@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            &#160;
+            <h:outputText value="#{postController.selected.postPK.postName}"/> <br/>    
+        </ui:define>
+        <ui:define name="body">
+            <p:outputPanel style="width: 100%;height: 500px">
+
+                <p:scrollPanel style="width:100%;height:150px"> 
+                    <p:outputPanel>
+                        &#160;
+                        #{postController.selected.postContent}
+                    </p:outputPanel>
+                     
+                </p:scrollPanel><br/>
+                
+                <p:scrollPanel style="width:100%;height:330px"> 
+                    
+                    <h:form styleClass="jsfcrud_list_form">  
+                        
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                        
+              <h:outputText escape="false" value="#{bundle.ListReplyEmpty}" rendered="#{replyController.items.rowCount == 0}"/>
+               <h:panelGroup rendered="#{replyController.items.rowCount > 0}">
+           
+                    <h:dataTable value="#{postController.selected.replyCollection}" var="item" border="10" cellpadding="6" rules="all" style="border:solid 0px" width="100%">
+                     
+                        <h:column>
+                            <h:outputText value="#{item.replyContent}"/>
+                        </h:column>
+                       
+                    </h:dataTable><br/>
+                   
+                </h:panelGroup>
+
+            </h:form>
+                </p:scrollPanel>
+            
+            </p:outputPanel>
+            
+            <h:form>
+                <h:panelGrid columns="2">
+                    <p:textEditor widgetVar="editor1" value="#{replyController.selected.replyContent}" height="200" style="margin-bottom:10px"/>
+                    <!--<h:inputTextarea rows="4" cols="30" id="replyContent" value="#{replyController.selected.replyContent}" title="#{bundle.CreateReplyTitle_replyContent}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_replyContent}"/>-->
+                </h:panelGrid>
+                <br />
+                
+                <h:commandButton action="#{replyController.Mycreate}" value="#{bundle.CreateReplySaveLink}" />
+
+                    <h:selectOneMenu id="post" value="#{replyController.selected.post}" title="#{bundle.CreateReplyTitle_post}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_post}">
+                        <f:selectItems value="#{postController.MygetItemsAvailableSelectOne(postController.selected.postPK)}"/>
+                    </h:selectOneMenu>
+                
+            </h:form>
+   
+           
+        </ui:define> 
+      
+    </ui:composition>
+
+</html>    
+    
