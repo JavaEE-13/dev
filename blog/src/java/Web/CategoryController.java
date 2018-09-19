@@ -1,12 +1,14 @@
 package Web;
 
 import Entity.Category;
+import Entity.Blog;
 import Web.util.JsfUtil;
 import Web.util.PaginationHelper;
 import Session.CategoryFacade;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -30,11 +32,29 @@ public class CategoryController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    private List<Category> cateList;
+
     public CategoryController() {
     }
-    
-    public List processBlog(String cate, String Label){
-        return ejbFacade.findBlogByCateAndLabel(cate, Label);
+
+    public String getBlogByCateAndLabel(String cate, String Label) {
+        current = ejbFacade.findBlogByCateAndLabel(cate, Label);
+        return "#";
+    }
+
+    public Collection<Blog> getBlogByCategory(String cate) {
+        cateList = ejbFacade.findBlogByCategory(cate);
+        int size = cateList.size();
+        Collection<Blog> blog = null;
+        for (int i = 0; i < size; i++) {
+            blog = cateList.get(i).getBlogCollection();
+        }
+        return blog;
+    }
+
+    public String getBlogByCategoryId(int cateId) {
+        current = ejbFacade.findBlogByCategoryId(cateId);
+        return "#";
     }
 
     public Category getSelected() {

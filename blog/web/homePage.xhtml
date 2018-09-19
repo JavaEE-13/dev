@@ -2,7 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>HomePage</title>
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
@@ -19,11 +22,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class = "my-2 my-lg-0">
-                        <h:link value = "sign in" rendered = "#{userController.selected == null}" 
+<!--                        <h:link value = "sign in" rendered = "#{userController.selected == null}" 
                                 outcome = "signin.xhtml"/>
                         <h:link value = "#{userController.selected.userName}" 
                                 rendered ="#{userController.selected != null}" 
-                                outcome = "myprofile.xhtml"/>  
+                                outcome = "myprofile.xhtml"/>  -->
                         <button type = "button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
                             sign in
                         </button>
@@ -45,45 +48,105 @@
                     menu
                 </h4>
 
-<!--                <h:button value ="Euramerican" outcome = "#{categoryController.processBlog(TV_Play, Euramerican)}"/>
-                <h:button value = "Japanese And Korean" outcome = "#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>-->
+<!--                <h:button value ="Euramerican" outcome = "#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/>
+                <h:button value = "Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel(TV_Play, Japanese_and_Korean)}"/>-->
 
                 <h:form>
                     <p:menu>
                         <p:submenu label = "TvShow" >
-                            <p:menuitem value="Euramerican"/> 
-                            <p:menuitem value="Japanese And Korean"/>
-                            <p:menuitem value="Chinese"/>
+                            <p:menuitem value="Euramerican" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/> 
+                            <p:menuitem value="Japanese And Korean" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Japanese_And_Korean)}"/>
+                            <p:menuitem value="Chinese" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Chinese)}"/>
                         </p:submenu> 
                         <p:submenu label = "Movie" >
-                            <p:menuitem value="Comedy" /> 
-                            <p:menuitem value="Suspense"/>
-                            <p:menuitem value="Action"/>
+                            <p:menuitem value="Comedy" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Comedy)}"/> 
+                            <p:menuitem value="Suspense" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Suspense)}"/>
+                            <p:menuitem value="Action" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Action)}"/>
                         </p:submenu> 
                         <p:submenu label = "Variety" >
-                            <p:menuitem value="Sports" /> 
-                            <p:menuitem value="Talk Show"/>
-                            <p:menuitem value="Emotion"/>
+                            <p:menuitem value="Sports" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Sports)}"/> 
+                            <p:menuitem value="Talk Show" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety,Talk_Show)}"/>
+                            <p:menuitem value="Emotion" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Emotion)}"/>
                         </p:submenu>
                         <p:submenu label = "Animation" >
-                            
+
                         </p:submenu>
                     </p:menu>
                 </h:form>
-                <!--                <h:form>
-                                    <p:menu>
-                                        <p:submenu label = "TvShow">
-                                            <p:menuitem value="Euramerican" actionListener="#{categoryController.processBlog(TV_Play, Euramerican)}" /> 
-                                            <p:menuitem value="Japanese" actionListener="#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>
-                                            <p:menuitem value="Chinese" actionListener="#{categoryController.processBlog(TV_Play, Chinese)}"/>
-                
-                                        </p:submenu> 
-                                    </p:menu>
-                                </h:form>-->
             </div>
             <div id = "center">
                 <div id = "up-left">
-                    <h1> TV Show</h1>
+                    <h1> TV Play</h1>
+                    
+                    <h:dataTable value="#{categoryController.getBlogByCategory('TV_Play')}" 
+                                 var="item" border="0" cellpadding="2" cellspacing="0" 
+                                 rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlogTitle_label}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.label}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlogTitle_content}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.content}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlogTitle_collectedNum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.collectedNum}"/>
+                        </h:column>                        
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.author}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+
+                        </h:column>
+                        
+                    </h:dataTable>
+
+<!--                    <h:form>
+                        <c:forEach var="b" items = "#{categoryController.getBlogByCategory(TV_Play).blogCollection}" >
+                            <h:outputText value = "#{b.author}"/>
+                            <h:outputText value = "#{b.content}"/>
+                        </c:forEach>
+                    </h:form>
+
+                    <ui:repeat var = "b" value = "#{catogoryController.getBlogByCategory(TV_Play).blogCollection}" varStatus = "status">
+
+                        <ui:include src = "#{b.author}"/>
+
+                        <ui:include src = "#{b.content}"/>
+
+                    </ui:repeat>-->
                 </div>
                 <div id = "up-right">
                     <h1> Movie</h1>

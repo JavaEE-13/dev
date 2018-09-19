@@ -18,7 +18,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class = "my-2 my-lg-0">
-                        <h:outputText value = "#{userController.selected.userName}"/>                                               
+                        <h:outputText value = "#{userController.selected.userName}"/> 
+                        
+                        <h:form>
+                            <h:commandLink value = "Sign Out" action = "#{userController.prepareSignOut}"/>
+                        </h:form>
+                        
+                        <button type = "button" class="btn btn-dark" onClick = "location = 'post.xhtml'">
+                            post
+                        </button>
                     </div>
                 </div>
             </nav>
@@ -28,29 +36,29 @@
             <div id = "left">
                 <h4 style="center">
                     menu
-                </h4>
-
-                <h:button value ="Euramerican" outcome = "#{categoryController.processBlog(TV_Play, Euramerican)}"/>
-                <h:button value = "Japanese And Korean" outcome = "#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>
-
+                </h4>              
                 <h:form>
                     <p:menu>
                         <p:submenu label = "TvShow" >
-                            <p:menuitem value="Euramerican" actionListener="#{categoryController.processBlog(TV_Play, Euramerican)}"/> 
-                            <p:menuitem value="Japanese And Korean"/>
+                            <p:menuitem value="Euramerican" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/> 
+                            <p:menuitem value="Japanese And Korean" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Japanese_And_Korean)}"/>
+                            <p:menuitem value="Chinese" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Chinese)}"/>
                         </p:submenu> 
+                        <p:submenu label = "Movie" >
+                            <p:menuitem value="Comedy" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Comedy)}"/> 
+                            <p:menuitem value="Suspense" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Suspense)}"/>
+                            <p:menuitem value="Action" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Action)}"/>
+                        </p:submenu> 
+                        <p:submenu label = "Variety" >
+                            <p:menuitem value="Sports" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Sports)}"/> 
+                            <p:menuitem value="Talk Show" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety,Talk_Show)}"/>
+                            <p:menuitem value="Emotion" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Emotion)}"/>
+                        </p:submenu>
+                        <p:submenu label = "Animation" >
+
+                        </p:submenu>
                     </p:menu>
                 </h:form>
-                <!--                <h:form>
-                                    <p:menu>
-                                        <p:submenu label = "TvShow">
-                                            <p:menuitem value="Euramerican" actionListener="#{categoryController.processBlog(TV_Play, Euramerican)}" /> 
-                                            <p:menuitem value="Japanese" actionListener="#{categoryController.processBlog(TV_Play, Japanese_and_Korean)}"/>
-                                            <p:menuitem value="Chinese" actionListener="#{categoryController.processBlog(TV_Play, Chinese)}"/>
-                
-                                        </p:submenu> 
-                                    </p:menu>
-                                </h:form>-->
             </div>
             <div id = "center">
                 <div id = "up-left">

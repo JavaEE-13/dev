@@ -6,6 +6,7 @@
 package Session;
 
 import Entity.Category;
+import static Entity.Category_.category;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,19 +32,52 @@ public class CategoryFacade extends AbstractFacade<Category> {
         super(Category.class);
     }
 
-    public List findBlogByCateAndLabel(String cate, String label) {
+    public Category findBlogByCateAndLabel(String cate, String label) {
         Query query = em.createNamedQuery("Category.findByCateAndLabel");
         query.setParameter("label", label);
         query.setParameter("cate", cate);
-        List blogCollection = null;
         try {
             Category category = (Category) query.getSingleResult();
-            blogCollection = (List) category.getBlogCollection();
+            return category;
+            
         } catch (Exception e) {
-            return blogCollection;
+            e.printStackTrace();
         }
 
-        return blogCollection;
+        return null;
     }
+    
+    public List findBlogByCategory(String cate) {
+        Query query = em.createNamedQuery("Category.findByCategory");
+        query.setParameter("category", cate);      
+        try {
+            List<Category> category=query.getResultList();
+            
+            return category;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }       
+    
+    public Category findBlogByCategoryId(int categoryId) {
+        Query query = em.createNamedQuery("Category.findByCategoryId");
+
+        query.setParameter("cateory", categoryId);
+        
+        try {
+            Category category = (Category) query.getSingleResult();
+            return category;
+           
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    
 
 }

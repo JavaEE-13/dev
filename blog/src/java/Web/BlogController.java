@@ -6,6 +6,7 @@ import Web.util.PaginationHelper;
 import Session.BlogFacade;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -29,9 +30,15 @@ public class BlogController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    private Collection<Blog> hot;
+    
     public BlogController() {
     }
 
+    public void getHot(){
+        hot = ejbFacade.getHotBlogs();
+    }
+    
     public Blog getSelected() {
         if (current == null) {
             current = new Blog();

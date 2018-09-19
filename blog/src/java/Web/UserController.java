@@ -73,6 +73,11 @@ public class UserController implements Serializable, Validator {
         return null;
     }
 
+    public String prepareSignOut(){
+        current = null;
+        return "homaPage.xhtml";
+    }
+    
     public void validate(FacesContext context, UIComponent component,
             Object value) throws ValidatorException {
         UIComponent c = null;

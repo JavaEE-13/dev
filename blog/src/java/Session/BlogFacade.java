@@ -6,9 +6,11 @@
 package Session;
 
 import Entity.Blog;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,11 @@ public class BlogFacade extends AbstractFacade<Blog> {
 
     public BlogFacade() {
         super(Blog.class);
+    }
+
+    public List getHotBlogs() {
+        Query query = em.createNamedQuery("Blog.fingHot"); 
+        return query.getResultList();
     }
     
 }

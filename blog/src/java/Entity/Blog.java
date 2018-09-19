@@ -43,12 +43,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Blog.findAll", query = "SELECT b FROM Blog b")
     , @NamedQuery(name = "Blog.findByBlogNo", query = "SELECT b FROM Blog b WHERE b.blogNo = :blogNo")
     , @NamedQuery(name = "Blog.findByCreatedTime", query = "SELECT b FROM Blog b WHERE b.createdTime = :createdTime")
-    , @NamedQuery(name = "Blog.findBlogByCateAndLabel", query = "SELECT b FROM Blog b WHERE b.label = :label AND b.categoryCategoryId = :catogoryId")        
+    , @NamedQuery(name = "Blog.findBlogByCateAndLabel", query = "SELECT b FROM Blog b WHERE b.label = :label AND b.categoryCategoryId = :catogoryId")
     , @NamedQuery(name = "Blog.findByImage", query = "SELECT b FROM Blog b WHERE b.image = :image")
     , @NamedQuery(name = "Blog.findByContent", query = "SELECT b FROM Blog b WHERE b.content = :content")
     , @NamedQuery(name = "Blog.findByTitle", query = "SELECT b FROM Blog b WHERE b.title = :title")
     , @NamedQuery(name = "Blog.findByCollectedNum", query = "SELECT b FROM Blog b WHERE b.collectedNum = :collectedNum")
-    , @NamedQuery(name = "Blog.findByDiyLabel", query = "SELECT b FROM Blog b WHERE b.diyLabel = :diyLabel")})
+    , @NamedQuery(name = "Blog.findByDiyLabel", query = "SELECT b FROM Blog b WHERE b.diyLabel = :diyLabel")
+    , @NamedQuery(name = "Blog.findHot", query = "SELECT b FROM Blog B ORDER BY b.collectedNum DESC")})
 public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -99,28 +100,23 @@ public class Blog implements Serializable {
     private Collection<Collect> collectCollection;
 
     public Blog() {
+        createdTime = new Date();
+        collectedNum = 0;
     }
 
     public Blog(Integer blogNo) {
         this.blogNo = blogNo;
     }
 
-    public Blog(String label, String content, String title) {
-        try {
-            URL url = new URL("http://www.beijing-time.org");
-            URLConnection conn = url.openConnection();
-            conn.connect();
-            long dateL = conn.getDate();
-            this.createdTime = new Date(dateL);
-            this.label = label;
-            this.content = content;
-            this.title = title;
-            this.collectedNum = 0;
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch(IOException e){
-            e.printStackTrace();
-        }
+    public Blog(String label, String content, String title, Category cate, User author) {
+
+        this.createdTime = new Date();
+        this.label = label;
+        this.content = content;
+        this.title = title;
+        this.collectedNum = 0;
+        this.categoryCategoryId = cate;
+        this.author = author;
 
     }
 
