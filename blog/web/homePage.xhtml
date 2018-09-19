@@ -77,76 +77,64 @@
             <div id = "center">
                 <div id = "up-left">
                     <h1> TV Play</h1>
-                    
-                    <h:dataTable value="#{categoryController.getBlogByCategory('TV_Play')}" 
-                                 var="item" border="0" cellpadding="2" cellspacing="0" 
-                                 rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
+                    <p:outputPanel>   
+                        <h:dataTable value="#{categoryController.getBlogByCategory('TV_Play')}" 
+                                     rendered ="#{categoryController.getBlogByCategory('TV_Play') ne null}"
+                                     var="item" border="0" cellpadding="2" cellspacing="0" 
+                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.createdTime}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBlogTitle_label}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.label}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBlogTitle_title}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.createdTime}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_label}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.label}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.title}"/>
+                            </h:column>
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBlogTitle_content}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.content}"/>
-                        </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_content}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.content}"/>
+                            </h:column>
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBlogTitle_collectedNum}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.collectedNum}"/>
-                        </h:column>                        
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_collectedNum}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.collectedNum}"/>
+                            </h:column>                        
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBlogTitle_author}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.author}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.author}"/>
+                            </h:column>
 
-                        </h:column>
-                        
-                    </h:dataTable>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
 
-<!--                    <h:form>
-                        <c:forEach var="b" items = "#{categoryController.getBlogByCategory(TV_Play).blogCollection}" >
-                            <h:outputText value = "#{b.author}"/>
-                            <h:outputText value = "#{b.content}"/>
-                        </c:forEach>
-                    </h:form>
+                            </h:column>
 
-                    <ui:repeat var = "b" value = "#{catogoryController.getBlogByCategory(TV_Play).blogCollection}" varStatus = "status">
+                        </h:dataTable>
+                    </p:outputPanel>
 
-                        <ui:include src = "#{b.author}"/>
-
-                        <ui:include src = "#{b.content}"/>
-
-                    </ui:repeat>-->
                 </div>
                 <div id = "up-right">
                     <h1> Movie</h1>

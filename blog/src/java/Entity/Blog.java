@@ -49,7 +49,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Blog.findByTitle", query = "SELECT b FROM Blog b WHERE b.title = :title")
     , @NamedQuery(name = "Blog.findByCollectedNum", query = "SELECT b FROM Blog b WHERE b.collectedNum = :collectedNum")
     , @NamedQuery(name = "Blog.findByDiyLabel", query = "SELECT b FROM Blog b WHERE b.diyLabel = :diyLabel")
-    , @NamedQuery(name = "Blog.findHot", query = "SELECT b FROM Blog B ORDER BY b.collectedNum DESC")})
+    , @NamedQuery(name = "Blog.findHot", query = "SELECT b FROM Blog B ORDER BY b.collectedNum DESC")
+    , @NamedQuery(name = "Blog.fingBlogByCate", query = "SELECT b FROM Blog b WHERE b.categoryCategoryId = :cate")})
 public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;

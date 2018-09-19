@@ -6,7 +6,7 @@
 package Session;
 
 import Entity.Category;
-import static Entity.Category_.category;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
