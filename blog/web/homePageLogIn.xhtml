@@ -19,7 +19,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class = "my-2 my-lg-0">
                         <h:outputText value = "#{userController.selected.userName}"/> 
-                        
+                        <h:outputText value = "#{userController.selected.personalSign}"/> 
+                       
                         <h:form>
                             <h:commandLink value = "Sign Out" action = "#{userController.prepareSignOut}"/>
                         </h:form>
