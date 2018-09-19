@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="resources/css/styling.css" type="text/css" />
+    </h:head>
+    <h:body>
+        <p:layout style="width:100%;height:620px;">
+            <p:layoutUnit position="north" size="60">
+                <div align="right">
+                    <p:commandButton  value="SignIn"  action="Personnal"/>
+                    <p:commandButton  value="SignUp"   />
+                </div>
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="west" size="160">
+                <h:form>
+                    <p:panelMenu style="width: fit-content">
+                        <p:submenu label="Movie">
+                            <p:menuitem value="Save" outcome="Posts" />
+                            <p:menuitem value="Update" outcome="Posts" />
+                        </p:submenu>
+                        <p:separator />
+                        <p:submenu label="Navigations" >
+                            <p:submenu label="Links" icon="ui-icon-extlink">
+                                <p:submenu label="PrimeFaces" icon="ui-icon-heart">
+                                    <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />
+                                    <p:menuitem value="Docs" url="http://www.primefaces.org/documentation" icon="ui-icon-document" />
+                                    <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="ui-icon-arrowthick-1-s" />
+                                    <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="ui-icon-wrench" />
+                                </p:submenu>
+                            </p:submenu>
+                            <p:menuitem value="Mobile" icon="ui-icon-signal" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>   
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <p:scrollPanel id="up-left">
+                    1
+                </p:scrollPanel>
+                <p:scrollPanel id="up-right">
+                    2
+                </p:scrollPanel>
+                <p:scrollPanel id="bottom-left">
+                    3
+                </p:scrollPanel>
+                <p:scrollPanel id="bottom-right">
+                    4
+                </p:scrollPanel>
+
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+
