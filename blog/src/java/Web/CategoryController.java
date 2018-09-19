@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -27,6 +29,8 @@ import javax.faces.model.SelectItem;
 @SessionScoped
 public class CategoryController implements Serializable {
 
+    private static final Logger LOG = Logger.getLogger(CategoryController.class.getName());
+    
     private Category current;
     private DataModel items = null;
     @EJB
@@ -46,8 +50,11 @@ public class CategoryController implements Serializable {
     }
 
     public String getBlogByCateAndLabel(String cate, String Label) {
+        LOG.log(Level.INFO,"getBlogByCateAndLabel start");
+        
         current = ejbFacade.findBlogByCateAndLabel(cate, Label);
-        return "#";
+        LOG.log(Level.INFO,"getBlogByCateAndLabel finish");
+        return "/mweb";
     }
 
     public Collection<Blog> getBlogByCategory(String cate) {

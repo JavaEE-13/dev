@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewReplyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewReplyLabel_replyId}"/>
+                    <h:outputText value="#{replyController.selected.replyId}" title="#{bundle.ViewReplyTitle_replyId}"/>
+                    <h:outputText value="#{bundle.ViewReplyLabel_replyContent}"/>
+                    <h:outputText value="#{replyController.selected.replyContent}" title="#{bundle.ViewReplyTitle_replyContent}"/>
+                    <h:outputText value="#{bundle.ViewReplyLabel_post}"/>
+                    <h:outputText value="#{replyController.selected.post}" title="#{bundle.ViewReplyTitle_post}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{replyController.destroyAndView}" value="#{bundle.ViewReplyDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewReplyEditLink}"/>
+                <br />
+                <h:commandLink action="#{replyController.prepareCreate}" value="#{bundle.ViewReplyCreateLink}" />
+                <br />
+                <h:commandLink action="#{replyController.prepareList}" value="#{bundle.ViewReplyShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewReplyIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

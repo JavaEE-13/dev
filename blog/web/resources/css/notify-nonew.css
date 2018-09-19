@@ -1,0 +1,126 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2018-9-19, 14:29:54
+    Author     : 79918
+*/
+
+html, body {
+    padding: 0;
+    margin: 0;
+    background: #eee;
+}
+.head{
+    height: 200px;
+    background: url();
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.header-table img{
+    vertical-align: middle;
+    border-radius: 130px;
+    margin-left: 50px;
+    box-shadow: rgba(0,0,0,0.3) 3px 4px 3px;
+}
+.pname{
+    font-size: 140%;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+.signature{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.returnd {
+   float: right;
+   margin-right: 30px;
+   margin-top: 0px;
+}
+.returnd h2{
+    font-size: 12px;
+    font-weight: 200
+}
+.colnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #00C37E;
+}
+
+.colnav ul li {
+    float: left;
+}
+
+.colnav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+.art{
+    margin-left: 30px;
+}
+.colnav ul li a:hover {
+    background-color: #FFE4C4;
+}
+.dropdown
+{
+    display:inline-block;
+}
+.dropbtn{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+.dropbtn:hover{
+    background-color: #FFE4C4;
+}
+.dropbtn a:hover{
+    background-color: #FFE4C4;
+}
+.dropdown-content
+{
+    display:none;
+    position:absolute;
+    background-color:#f9f9f9;
+    min-width:160px;
+    box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+  
+.dropdown-content a
+{
+    color:black;
+    padding:12px 16px;
+    text-decoration:none;
+    display:block;
+}
+  
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+  
+.dropdown:hover .dropdown-content
+{
+    display:block;
+}
+.notifytion{
+    width: 900px;
+    margin: 0 auto;
+}
+.nonew{
+    margin-top: 100px;
+}
+.nonew h2{
+    font-size: 35px;
+    font-style: italic;
+    color: #C0C0C0FF;
+    font-weight: 3;
+    margin-left: 0 auto;
+}

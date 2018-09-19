@@ -6,10 +6,10 @@
 package Session;
 
 import Entity.Category;
-
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -38,10 +38,9 @@ public class CategoryFacade extends AbstractFacade<Category> {
         query.setParameter("cate", cate);
         try {
             Category category = (Category) query.getSingleResult();
-            return category;
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+            return category;          
+        } catch (NoResultException ex) {
+            ex.printStackTrace();
         }
 
         return null;

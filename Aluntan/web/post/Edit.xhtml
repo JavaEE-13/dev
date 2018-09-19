@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPostTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPostLabel_postPK_postName}" for="postPK_postName" />
+                    <h:inputText id="postPK_postName" value="#{postController.selected.postPK.postName}" title="#{bundle.EditPostTitle_postPK_postName}" required="true" requiredMessage="#{bundle.EditPostRequiredMessage_postPK_postName}"/>
+                    <h:outputLabel value="#{bundle.EditPostLabel_postPK_postId}" for="postPK_postId" />
+                    <h:inputText id="postPK_postId" value="#{postController.selected.postPK.postId}" title="#{bundle.EditPostTitle_postPK_postId}" required="true" requiredMessage="#{bundle.EditPostRequiredMessage_postPK_postId}"/>
+                    <h:outputLabel value="#{bundle.EditPostLabel_postContent}" for="postContent" />
+                    <h:inputTextarea rows="4" cols="30" id="postContent" value="#{postController.selected.postContent}" title="#{bundle.EditPostTitle_postContent}" required="true" requiredMessage="#{bundle.EditPostRequiredMessage_postContent}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{postController.update}" value="#{bundle.EditPostSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPostViewLink}"/>
+                <br />
+                <h:commandLink action="#{postController.prepareList}" value="#{bundle.EditPostShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPostIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

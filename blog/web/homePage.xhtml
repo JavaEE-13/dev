@@ -57,7 +57,7 @@
                 <h:form>
                     <p:menu>
                         <p:submenu label = "TvShow" >
-                            <p:menuitem value="Euramerican" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/> 
+                            <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/> 
                             <p:menuitem value="Japanese And Korean" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Japanese_And_Korean)}"/>
                             <p:menuitem value="Chinese" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Chinese)}"/>
                         </p:submenu> 
