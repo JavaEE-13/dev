@@ -6,42 +6,60 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        </link>
     </h:head>
     <h:body>
-        <h1>The Hot Blogs</h1>
-        <p:outputPanel> 
-            <h:dataTable value="#{blogController.getHotBlogs}" 
-                         rendered ="#{blogController.getHotBlogs() ne null}"
-                         var="item" border="0" cellpadding="2" cellspacing="0" 
-                         rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListBlogTitle_title}"/>
-                    </f:facet>
-                    <h:link value="#{item.title}" onclick="#"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListBlogTitle_author}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.author.userName}"/>
-                </h:column>   
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.createdTime}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                </h:column>  
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="&nbsp;"/>
-                    </f:facet>
+        <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Sign Up</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                </h:column>
-            </h:dataTable>
-        </p:outputPanel>
+                    <div class="collapse navbar-collapse" id="navbarSuspportedContent">
+                        <div class = "my-2 my-lg-0">                        
+                            <button type="button" class="btn btn-secondary" onClick = "location = 'homePage.xhtml'">
+                                homePage
+                            </button>                        
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <h1>The Hot Blogs</h1>
+            <p:outputPanel> 
+                <h:dataTable value="#{blogController.getHotBlogs}" 
+                             rendered ="#{blogController.getHotBlogs() ne null}"
+                             var="item" border="0" cellpadding="2" cellspacing="0" 
+                             rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                        </f:facet>
+                        <h:link value="#{item.title}" onclick="#"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.author.userName}"/>
+                    </h:column>   
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.createdTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>  
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+
+                    </h:column>
+                </h:dataTable>
+            </p:outputPanel>
     </h:body>
 </html>
 

@@ -25,10 +25,9 @@
                 <div class = "col-4">
                     <h:form>
                         <h:panelGrid columns="3">
-                            <h:outputLabel value="Search By DIY Label" for="label" />
-                            <h:inputText id="label" value="#{blogController.diyLabel}" title="#{bundle.CreateBlogTitle_label}" required="true" requiredMessage="#{bundle.CreateBlogRequiredMessage_label}"/>
-                            <h:commandButton type = "submit" actionListener = "#{blogController.searchBy}" value = "search"/> 
-                            <h:commandLink type ="submit" action="submit" value="search" />
+                            <h:outputLabel value="Search By DIY Label" for="label" for="diyLabel" />                           
+                            <h:inputText id="label" value="#{blogController.diyLabel}" required="true" requiredMessage="The field is required."/>
+                            <h:commandButton type = "submit" actionListener = "#{blogController.searchByDLabel}" value = "search"/>                           
                         </h:panelGrid>
                     </h:form>
                 </div>

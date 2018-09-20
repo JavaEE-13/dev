@@ -40,23 +40,32 @@ public class BlogController implements Serializable {
     
     private String diyLabel;
 
-    public String getDiyLabel() {
+     public String getDiyLabel() {
         return diyLabel;
     }
    
     public void setDiyLabel(String diyLabel) {
         this.diyLabel = diyLabel;
     }
-
-    public String searchByDLabel(String dLabel) {
+    
+    public String searchByDLabel() {
         this.searchedBlogs = new ArrayList<>();
         try {
-            this.searchedBlogs = ejbFacade.getBlogByDIYLabel(dLabel);
+            this.searchedBlogs = ejbFacade.getBlogByDIYLabel(this.diyLabel);
         } catch (NoResultException e) {
             e.printStackTrace();
         }
         return "searchBlog.xhtml";
     }
+  
+    public Collection<Blog> getSearchedBlogs(){
+        return this.searchedBlogs;
+    }
+           
+    public void setSearchedBlogs(Collection<Blog> result){
+        this.searchedBlogs = result;
+    }
+    
     public String getBlogDetail(Blog blog){
         current = blog;
         return "thePost.xhtml";
