@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Follow.findAll", query = "SELECT f FROM Follow f")
     , @NamedQuery(name = "Follow.findByUserUserNo", query = "SELECT f FROM Follow f WHERE f.followPK.userUserNo = :userUserNo")
-    , @NamedQuery(name = "Follow.findByFollower", query = "SELECT f FROM Follow f WHERE f.followPK.follower = :follower")})
+    , @NamedQuery(name = "Follow.findByFollower", query = "SELECT f FROM Follow f WHERE f.followPK.follower = :follower")
+    , @NamedQuery(name = "Follow.FindByUserAndFollower", query = "SELECT f FROM Follow f WHERE f.followPK.follower = :follower AND f.followPK.userUserNo = :userUserNo ")})
 public class Follow implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -108,5 +109,5 @@ public class Follow implements Serializable {
     public String toString() {
         return "Entity.Follow[ followPK=" + followPK + " ]";
     }
-    
+
 }

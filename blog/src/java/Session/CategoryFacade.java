@@ -38,38 +38,22 @@ public class CategoryFacade extends AbstractFacade<Category> {
         query.setParameter("cate", cate);
         try {
             Category category = (Category) query.getSingleResult();
-            return category;          
+            return category;
         } catch (NoResultException ex) {
             ex.printStackTrace();
         }
 
         return null;
     }
-    
+
     public List findBlogByCategory(String cate) {
         Query query = em.createNamedQuery("Category.findByCategory");
-        query.setParameter("category", cate);      
+        query.setParameter("category", cate);
         try {
-            List<Category> category=query.getResultList();
-            
-            return category;
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            List<Category> category = query.getResultList();
 
-        return null;
-    }       
-    
-    public Category findBlogByCategoryId(int categoryId) {
-        Query query = em.createNamedQuery("Category.findByCategoryId");
-
-        query.setParameter("cateory", categoryId);
-        
-        try {
-            Category category = (Category) query.getSingleResult();
             return category;
-           
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,6 +61,20 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return null;
     }
 
-    
+    public Category findBlogByCategoryId(int categoryId) {
+        Query query = em.createNamedQuery("Category.findByCategoryId");
+
+        query.setParameter("cateory", categoryId);
+
+        try {
+            Category category = (Category) query.getSingleResult();
+            return category;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 }

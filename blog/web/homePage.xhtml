@@ -15,32 +15,43 @@
     <h:body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class = "col-8">
-                <a class="navbar-brand" href="#">HomePage</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class = "col-4">
+                    <a class="navbar-brand" href="homePage">HomePage</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a href = "hot.xhtml">热门</a>
+                </div>
+                <div class = "col-4">
+                    <h:form>
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="Search By DIY Label" for="label" />
+                            <h:inputText id="label" value="#{blogController.diyLabel}" title="#{bundle.CreateBlogTitle_label}" required="true" requiredMessage="#{bundle.CreateBlogRequiredMessage_label}"/>
+                            <h:commandButton type = "submit" actionListener = "#{blogController.searchBy}" value = "search"/> 
+                            <h:commandLink type ="submit" action="submit" value="search" />
+                        </h:panelGrid>
+                    </h:form>
                 </div>
                 <div class ="col-4">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class = "my-2 my-lg-0">
-<!--                        <h:link value = "sign in" rendered = "#{userController.selected == null}" 
-                                outcome = "signin.xhtml"/>
-                        <h:link value = "#{userController.selected.userName}" 
-                                rendered ="#{userController.selected != null}" 
-                                outcome = "myprofile.xhtml"/>  -->
-                        <button type = "button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
-                            sign in
-                        </button>
-                        <button type = "button" class="btn btn-dark" onClick = "location = 'signup.xhtml'">
-                            sign up
-                        </button>
-                        <button type="button" class="btn btn-light" onClick = "location = 'admin/adminSignIn.xhtml'">
-                            as admin
-                        </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class = "my-2 my-lg-0">
+                            <h:link value = "sign in" rendered = "#{userController.selected ne null}" 
+                                    outcome = "signin.xhtml"/>
+                            <h:link value = "#{userController.selected.userName}" 
+                                    rendered ="#{userController.selected ne null}" 
+                                    outcome = "myprofile.xhtml"/>  
+                            <button type = "button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
+                                sign in
+                            </button>
+                            <button type = "button" class="btn btn-dark" onClick = "location = 'signup.xhtml'">
+                                sign up
+                            </button>
+                            <button type="button" class="btn btn-light" onClick = "location = 'admin/adminSignIn.xhtml'">
+                                as admin
+                            </button>
 
+                        </div>
                     </div>
-                </div>
                 </div>
             </nav>
         </header>
@@ -51,25 +62,22 @@
                     menu
                 </h4>
 
-<!--                <h:button value ="Euramerican" outcome = "#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/>
-                <h:button value = "Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel(TV_Play, Japanese_and_Korean)}"/>-->
-
                 <h:form>
                     <p:menu>
                         <p:submenu label = "TvShow" >
-                            <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/> 
-                            <p:menuitem value="Japanese And Korean" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Japanese_And_Korean)}"/>
-                            <p:menuitem value="Chinese" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Chinese)}"/>
+                            <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel('TV_Play', 'Euramerican')}"/> 
+                            <p:menuitem value="Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Japanese_And_Korean')}"/>
+                            <p:menuitem value="Chinese" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Chinese')}"/>
                         </p:submenu> 
                         <p:submenu label = "Movie" >
-                            <p:menuitem value="Comedy" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Comedy)}"/> 
-                            <p:menuitem value="Suspense" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Suspense)}"/>
-                            <p:menuitem value="Action" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Action)}"/>
+                            <p:menuitem value="Comedy" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Comedy')}"/> 
+                            <p:menuitem value="Suspense" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Suspense')}"/>
+                            <p:menuitem value="Action" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Action')}"/>
                         </p:submenu> 
                         <p:submenu label = "Variety" >
-                            <p:menuitem value="Sports" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Sports)}"/> 
-                            <p:menuitem value="Talk Show" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety,Talk_Show)}"/>
-                            <p:menuitem value="Emotion" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Emotion)}"/>
+                            <p:menuitem value="Sports" outcome = "#{categoryController.getBlogByCateAndLabel('Variety', 'Sports')}"/> 
+                            <p:menuitem value="Talk Show" outcome = "#{categoryController.getBlogByCateAndLabel('Variety','Talk_Show')}"/>
+                            <p:menuitem value="Emotion" outcome = "#{categoryController.getBlogByCateAndLabel('Variety', 'Emotion')}"/>
                         </p:submenu>
                         <p:submenu label = "Animation" >
 
@@ -84,13 +92,12 @@
                         <h:dataTable value="#{categoryController.getBlogByCategory('TV_Play')}" 
                                      rendered ="#{categoryController.getBlogByCategory('TV_Play') ne null}"
                                      var="item" border="0" cellpadding="2" cellspacing="0" 
-                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
-
+                                     rules="all" style="border:solid 2px">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListBlogTitle_title}"/>
                                 </f:facet>
-                                <h:link value="#{item.title}" onclick="#"/>
+                                <h:link value="#{item.title}" outcome = "thePost.xhtml"/>                                                                                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -103,19 +110,16 @@
                                     <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
                                 </f:facet>
                                 <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    <f:convertDateTime pattern="YYYY/mm/dd HH:mm:ss" />
                                 </h:outputText>
                             </h:column>  
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
                                 </f:facet>
-
                             </h:column>
-
                         </h:dataTable>
                     </p:outputPanel>
-
                 </div>
                 <div id = "up-right">
                     <h1> Movie</h1>
@@ -129,7 +133,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListBlogTitle_title}"/>
                                 </f:facet>
-                                <h:link value="#{item.title}" onclick="#"/>
+                                <h:link value="#{item.title}" onclick="thePost.xhtml"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -149,9 +153,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
                                 </f:facet>
-
                             </h:column>
-
                         </h:dataTable>
                     </p:outputPanel>
                 </div>
@@ -162,12 +164,11 @@
                                      rendered ="#{categoryController.getBlogByCategory('Variety') ne null}"
                                      var="item" border="0" cellpadding="2" cellspacing="0" 
                                      rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
-
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListBlogTitle_title}"/>
                                 </f:facet>
-                                <h:link value="#{item.title}" onclick="#"/>
+                                <h:link value="#{item.title}" onclick="thePost.xhtml"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -187,9 +188,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
                                 </f:facet>
-
                             </h:column>
-
                         </h:dataTable>
                     </p:outputPanel>
                 </div>
@@ -200,12 +199,13 @@
                                      rendered ="#{categoryController.getBlogByCategory('Animation') ne null}"
                                      var="item" border="0" cellpadding="2" cellspacing="0" 
                                      rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
-
                             <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
-                                </f:facet>
-                                <h:link value="#{item.title}" onclick="#"/>
+                                <h:form>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                    </f:facet>
+                                    <h:commandButton value="#{item.title}" actionListener="#{blogController.getBlogDetail(item)}"/>
+                                </h:form>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">

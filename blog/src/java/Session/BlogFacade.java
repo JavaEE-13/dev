@@ -41,9 +41,14 @@ public class BlogFacade extends AbstractFacade<Blog> {
         return query.getResultList();
     }
 
-    public List getHotBlogs() {
-        Query query = em.createNamedQuery("Blog.fingHot");
+    public List<Blog> getHotBlogs() {
+        Query query = em.createNamedQuery("Blog.fingHotBlogs");
         return query.getResultList();
     }
-
+    
+    public List getBlogByDIYLabel(String dLabel){
+        Query query = em.createNamedQuery("Blog.findByDIYLabel");
+        query.setParameter("diyLabel", dLabel);
+        return query.getResultList();
+    }
 }

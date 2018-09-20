@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -24,37 +25,46 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.NoResultException;
 
 @Named("categoryController")
 @SessionScoped
 public class CategoryController implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(CategoryController.class.getName());
-    
+
     private Category current;
     private DataModel items = null;
     @EJB
     private Session.CategoryFacade ejbFacade;
-    
+
     @EJB
     private Session.BlogFacade blogFacade;
-    
+
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     private List<Category> cateList;
 
 //    private BlogController bControl;
-
     public CategoryController() {
     }
 
-    public String getBlogByCateAndLabel(String cate, String Label) {
-        LOG.log(Level.INFO,"getBlogByCateAndLabel start");
-        
-        current = ejbFacade.findBlogByCateAndLabel(cate, Label);
-        LOG.log(Level.INFO,"getBlogByCateAndLabel finish");
-        return "/mweb";
+    public String getBlogByCateAndLabel(String cate, String label) {
+        current = ejbFacade.findBlogByCateAndLabel(cate, label);
+
+        Collection<Blog> blogC = new ArrayList<>();
+        try {
+            blogC.addAll(current.getBlogCollection());
+        } catch (NoResultException e) {
+            e.printStackTrace();
+        } catch(NullPointerException e)  {
+            //提示错误消息？?
+//            FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("/Bundle").getString("noResult"));
+//            throw new NullPointerException(msg);
+            e.printStackTrace();
+        }    
+        return "thePost.xhtml";
     }
 
     public Collection<Blog> getBlogByCategory(String cate) {
@@ -63,7 +73,7 @@ public class CategoryController implements Serializable {
         int size = cateList.size();
 //        bControl = new BlogController();
         Collection<Blog> blogC = new ArrayList<>();
-        for (Category c: cateList) {
+        for (Category c : cateList) {
             try {
                 blogC.addAll(c.getBlogCollection());
             } catch (Exception e) {
@@ -71,18 +81,17 @@ public class CategoryController implements Serializable {
             }
         }
         try {
-            System.out.println("BlogSize");
-            System.out.println(blogC.size());
+//            System.out.println("BlogSize");
+//            System.out.println(blogC.size());
             Iterator iterator = blogC.iterator();
             while (iterator.hasNext()) {
 
                 Blog blog = (Blog) iterator.next();
-                System.out.println(blog.getTitle());
+//                System.out.println(blog.getTitle());
             }
         } catch (Exception e) {
 
         }
-
         return blogC;
     }
 

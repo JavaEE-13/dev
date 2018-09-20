@@ -8,7 +8,9 @@ package Session;
 import Entity.Follow;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,8 +27,22 @@ public class FollowFacade extends AbstractFacade<Follow> {
         return em;
     }
 
+    public Follow getFollowByUserAndFollower(int userNo, int followerNo) {
+        Query query = em.createNamedQuery("Follow.FindByUserAndFollower");
+        query.setParameter("userUserNo", userNo);
+        query.setParameter("follower", followerNo);
+        try {
+            Follow f = (Follow) query.getSingleResult();
+            return f;
+        } catch (NoResultException ex) {
+            //error message?
+            return null;
+        }
+
+    }
+
     public FollowFacade() {
         super(Follow.class);
     }
-    
+
 }

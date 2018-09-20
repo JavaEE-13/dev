@@ -8,6 +8,7 @@ import Web.util.PaginationHelper;
 import Session.BlogFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -20,6 +21,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.NoResultException;
 
 @Named("blogController")
 @SessionScoped
@@ -34,23 +36,57 @@ public class BlogController implements Serializable {
 
     private Collection<Blog> hots;
     //private Collection<Blog> blogsByCate;
-            
+    private Collection<Blog> searchedBlogs;
+    
+    private String diyLabel;
+
+    public String getDiyLabel() {
+        return diyLabel;
+    }
+   
+    public void setDiyLabel(String diyLabel) {
+        this.diyLabel = diyLabel;
+    }
+
+    public String searchByDLabel(String dLabel) {
+        this.searchedBlogs = new ArrayList<>();
+        try {
+            this.searchedBlogs = ejbFacade.getBlogByDIYLabel(dLabel);
+        } catch (NoResultException e) {
+            e.printStackTrace();
+        }
+        return "searchBlog.xhtml";
+    }
+    public String getBlogDetail(Blog blog){
+        current = blog;
+        return "thePost.xhtml";
+    }
+    
     public BlogController() {
     }
 
-    public void getHot(){
+    public Collection<Blog> getHotBlogs() {
+        try{
         hots = ejbFacade.getHotBlogs();
+        }catch(Exception ex){
+            
+        }
+        return hots;
     }
-    
-    
-    public Collection<Blog> getBlogsByCategoryId(Category cate){
-       Collection<Blog> blogsByCate = ejbFacade.getBlogsByCate(cate);
-       System.out.print("blog controller:");
-       System.out.println(blogsByCate.size());
-       
-       return blogsByCate;
+
+    public Collection<Blog> getBlogByDIYLabel(String dLabel) {
+        Collection<Blog> dBlog = ejbFacade.getBlogByDIYLabel(dLabel);
+        return dBlog;
     }
-    
+
+    public Collection<Blog> getBlogsByCategoryId(Category cate) {
+        Collection<Blog> blogsByCate = ejbFacade.getBlogsByCate(cate);
+        System.out.print("blog controller:");
+        System.out.println(blogsByCate.size());
+
+        return blogsByCate;
+    }
+
     public Blog getSelected() {
         if (current == null) {
             current = new Blog();
