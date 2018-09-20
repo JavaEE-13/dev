@@ -53,6 +53,10 @@ public class Follow implements Serializable {
         this.followPK = new FollowPK(userUserNo, follower);
     }
 
+    public Follow(User u1, User u2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public FollowPK getFollowPK() {
         return followPK;
     }

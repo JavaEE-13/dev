@@ -22,10 +22,10 @@ and open the template in the editor.
                         <td class="htcell2" height="200px">
                             <table class="ctable">
                                 <tr>
-                                    <pre class="pname">这是昵称</pre>
+                                    <h:link value="#{followController.author.userName}" outcome = "#{followController.createFollow(author, userController.selected)}"/>
                                 </tr>
                                 <tr>
-                                    <pre class="signature">我是一个个性签名</pre>
+                                    <h:outputText value="#{followController.author.personalSign}" rendered="#{followController.author.personalSign ne null}"/>
                                 </tr>
                                 <!--<td>
                                         <img src="iconcol.jpg" width="20px" height="30px">

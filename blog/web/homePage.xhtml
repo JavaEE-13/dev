@@ -25,10 +25,9 @@
                 <div class = "col-4">
                     <h:form>
                         <h:panelGrid columns="3">
-                            <h:outputLabel value="Search By DIY Label" for="label" />
-                            <h:inputText id="label" value="#{blogController.diyLabel}" title="#{bundle.CreateBlogTitle_label}" required="true" requiredMessage="#{bundle.CreateBlogRequiredMessage_label}"/>
-                            <h:commandButton type = "submit" actionListener = "#{blogController.searchBy}" value = "search"/> 
-                            <h:commandLink type ="submit" action="submit" value="search" />
+                            <h:outputLabel value="Search By DIY Label" for="diyLabel" />                           
+                            <h:inputText id="label" value="#{blogController.diyLabel}" required="true" requiredMessage="The field is required."/>
+                            <h:commandButton type = "submit" actionListener = "#{blogController.searchByDLabel}" value = "search"/>                           
                         </h:panelGrid>
                     </h:form>
                 </div>
@@ -64,11 +63,13 @@
 
                 <h:form>
                     <p:menu>
+
                         <p:submenu label = "TvShow" >
                             <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel('TV_Play', 'Euramerican')}"/> 
                             <p:menuitem value="Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Japanese_And_Korean')}"/>
                             <p:menuitem value="Chinese" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Chinese')}"/>
                         </p:submenu> 
+
                         <p:submenu label = "Movie" >
                             <p:menuitem value="Comedy" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Comedy')}"/> 
                             <p:menuitem value="Suspense" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Suspense')}"/>
@@ -97,7 +98,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListBlogTitle_title}"/>
                                 </f:facet>
-                                <h:link value="#{item.title}" outcome = "thePost.xhtml"/>                                                                                                
+                                <h:link value="#{item.title}" outcome ="#{blogController.getBlogDetail(item)}"/>                                                                                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -105,14 +106,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="YYYY/mm/dd HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                            
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
@@ -141,14 +135,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                              
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
@@ -176,14 +163,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                             
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
@@ -213,14 +193,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                            
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>

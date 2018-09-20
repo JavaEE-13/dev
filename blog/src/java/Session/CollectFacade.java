@@ -5,10 +5,13 @@
  */
 package Session;
 
+import Entity.Blog;
 import Entity.Collect;
+import Entity.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +28,15 @@ public class CollectFacade extends AbstractFacade<Collect> {
         return em;
     }
 
+    public Collect getCollectByBlogAndUser(Blog b, User u){
+        Query query = em.createNamedQuery("Collect.findByBlogAndUser");
+        query.setParameter("Blog", b);
+        query.setParameter("User", u);
+        return (Collect)query.getSingleResult();
+    }
+    
+    
+    
     public CollectFacade() {
         super(Collect.class);
     }

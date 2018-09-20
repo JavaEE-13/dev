@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Collect.findAll", query = "SELECT c FROM Collect c")
-    , @NamedQuery(name = "Collect.findByCollectNo", query = "SELECT c FROM Collect c WHERE c.collectNo = :collectNo")})
+    , @NamedQuery(name = "Collect.findByCollectNo", query = "SELECT c FROM Collect c WHERE c.collectNo = :collectNo")
+    , @NamedQuery(name = "Collect.findByBlogAndUser", query = "SELECT c FROM Collect c WHERE c.blogBlogNo =:Blog AND c.userUserNo = :User")})
 public class Collect implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,6 +55,11 @@ public class Collect implements Serializable {
         this.collectNo = collectNo;
     }
 
+    public Collect(Blog blog, User user){
+        this.blogBlogNo = blog;
+        this.userUserNo = user;
+    }
+    
     public Integer getCollectNo() {
         return collectNo;
     }
@@ -110,5 +116,5 @@ public class Collect implements Serializable {
     public String toString() {
         return "Entity.Collect[ collectNo=" + collectNo + " ]";
     }
-    
+
 }

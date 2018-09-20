@@ -1,6 +1,8 @@
 package Web;
 
+import Entity.Blog;
 import Entity.Collect;
+import Entity.User;
 import Web.util.JsfUtil;
 import Web.util.PaginationHelper;
 import Session.CollectFacade;
@@ -29,6 +31,24 @@ public class CollectController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    
+    @EJB 
+    private Session.BlogFacade blogFacade;
+    
+    public void createCollect(Blog b, User u){
+        if(ejbFacade.getCollectByBlogAndUser(b, u) != null){
+            JsfUtil.addErrorMessage("You have already collected.");
+        }
+        current = new Collect(b, u);
+        ejbFacade.create(current);
+        Blog cb = blogFacade.find(b);
+        int i = cb.getCollectedNum();
+        i = i + 1;
+        cb.setCollectedNum(i);
+        blogFacade.edit(cb);
+        JsfUtil.addSuccessMessage("Collect success");
+    }    
+    
     public CollectController() {
     }
 

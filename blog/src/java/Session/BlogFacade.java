@@ -51,4 +51,9 @@ public class BlogFacade extends AbstractFacade<Blog> {
         query.setParameter("diyLabel", dLabel);
         return query.getResultList();
     }
+
+    public Blog getBlogByBlogNo(Blog blogBlogNo) {
+        Query query = em.createNamedQuery("Blog.findByBlogNo");
+        return (Blog)query.getSingleResult();
+    }
 }

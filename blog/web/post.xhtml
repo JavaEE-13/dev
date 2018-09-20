@@ -33,10 +33,10 @@
                              title="#{bundle.CreateBlogTitle_content}" required="true" 
                              requiredMessage="#{bundle.CreateBlogRequiredMessage_content}"/>
 
-                <h:outputLabel value="#{bundle.CreateBlogLabel_collectedNum}" for="collectedNum" />
+<!--                <h:outputLabel value="#{bundle.CreateBlogLabel_collectedNum}" for="collectedNum" />
                 <h:inputText id="collectedNum" value="#{blogController.selected.collectedNum}" 
                              title="#{bundle.CreateBlogTitle_collectedNum}" required="true" 
-                             requiredMessage="#{bundle.CreateBlogRequiredMessage_collectedNum}"/>
+                             requiredMessage="#{bundle.CreateBlogRequiredMessage_collectedNum}"/>-->
 <!--                    <h:outputLabel value="#{bundle.CreateBlogLabel_diyLabel}" for="diyLabel" />
                 <h:inputText id="diyLabel" value="#{blogController.selected.diyLabel}" 
 title="#{bundle.CreateBlogTitle_diyLabel}" />-->
@@ -53,6 +53,7 @@ title="#{bundle.CreateBlogTitle_diyLabel}" />-->
             <h:commandLink action="#{blogController.create}" value="#{bundle.CreateBlogSaveLink}" />
             <br />
             <br />
+            </h:form>
     </h:body>
 </html>
 
