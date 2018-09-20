@@ -8,17 +8,48 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{blogController.selected.title}"></h:outputText>
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class =" col-8">
+                        <h:outputText value="#{blogController.selected.title}"></h:outputText>
+                        <h:form>
+                            <h:commandLink value = "#{blogController.selected.author.userName}" action="#{followController.getAuthorDetail(blogController.selected.author)}"/> 
+                        </h:form>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    <div class ="col-4">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class = "my-2 my-lg-0">
+                                <h:form>
+                                    <h:commandLink value = "Sign Out" action = "#{userController.prepareSignOut}"/>
+                                </h:form>
+
+                                <h:form>
+                                    <h:commandLink value = "#{userController.selected.userName}" action="mweb.xhtml"/> 
+                                </h:form>
+                                <button type = "button" class="btn btn-dark" onClick = "location = 'post.xhtml'">
+                                    post
+                                </button>
+                            </div>
+                        </div>
+                    </div>s
+                </nav>
+            </header>
+
         </ui:define>
         <ui:define name="body">
-
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
             <p:outputPanel style="width: 100%;height: 300px">
                 <p:scrollPanel style="width:100%;height:100px"> 
                     <p:outputPanel>
                         #{blogController.selected.content}
                     </p:outputPanel>
                 </p:scrollPanel>
-                
+
                 <p:scrollPanel style="width:100%;height:200px"> 
                     <h:form>
                         <h:dataTable value="#{commentController.items}" var="item" border="10" cellpadding="20" rules="all" style="border:solid 0px" width="100%"   >

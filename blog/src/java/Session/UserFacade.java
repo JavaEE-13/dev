@@ -37,5 +37,9 @@ public class UserFacade extends AbstractFacade<User> {
         query.setParameter("password", password);
         return (User)query.getSingleResult();
     }
+
+    public Object getFollowByBlogAndUser(User u1, User u2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

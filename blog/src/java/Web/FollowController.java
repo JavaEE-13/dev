@@ -1,6 +1,8 @@
 package Web;
 
 import Entity.Follow;
+import Entity.FollowPK;
+import Entity.User;
 import Web.util.JsfUtil;
 import Web.util.PaginationHelper;
 import Session.FollowFacade;
@@ -29,6 +31,45 @@ public class FollowController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    @EJB
+    private Session.UserFacade userFacade;      
+    
+    private User author;
+    
+    public String getAuthorDetail(User u){
+        setAuthor(u);
+        return "selfinfo.xhtml";
+    }
+    
+    public User getAuthor(){
+        return author;
+    }
+
+    public void setAuthor(User u){
+        this.author = u;
+    }
+    
+    
+    public void createFollow(User u1, User u2){
+        if(u1 == u2){
+            JsfUtil.addErrorMessage("You can not follow yourself");
+        }
+        if(userFacade.getFollowByBlogAndUser(u1, u2) != null){
+            JsfUtil.addErrorMessage("You have already Followed.");
+        }
+        Follow f = new Follow(new FollowPK(u1.getUserNo(), u2.getUserNo()));
+        ejbFacade.create(f);
+   
+        int i = u1.getFollowerNum();
+        i = i + 1;
+        u1.setFollowerNum(i);
+        userFacade.edit(u1);
+        JsfUtil.addSuccessMessage("Follow success");
+    }
+    
+    
+    
+    
     public FollowController() {
     }
 

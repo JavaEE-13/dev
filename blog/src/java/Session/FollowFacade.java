@@ -6,6 +6,7 @@
 package Session;
 
 import Entity.Follow;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -16,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author user
  */
-@Stateless
+@Stateful
 public class FollowFacade extends AbstractFacade<Follow> {
 
     @PersistenceContext(unitName = "blogPU")
