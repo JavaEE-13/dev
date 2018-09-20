@@ -37,7 +37,7 @@ public class UserController implements Serializable, Validator {
     private String password;
 
     private String passwordConfirm;
-
+    
     public String getUserName() {
         return userName;
     }
@@ -49,7 +49,7 @@ public class UserController implements Serializable, Validator {
     public String getPassword() {
         return password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
@@ -64,7 +64,7 @@ public class UserController implements Serializable, Validator {
 
     public String processSignIn() {
         try {
-            current = ejbFacade.matchUser(this.userName, this.password);
+            current = ejbFacade.matchUser(this.userName,this.password);
             System.out.println(current.getUserName());
             return "/homePageLogIn.xhtml";
         } catch (Exception e) {
@@ -151,8 +151,9 @@ public class UserController implements Serializable, Validator {
         selectedItemIndex = -1;
         return "signin.xhtml";
     }
-
+    
     public String signup() {
+        //String pass_ = this.passwordConfirm;
         try {
             if (passwordConfirm == null ? current.getPassword() != null : !passwordConfirm.equals(current.getPassword())) {
                 JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PasswordDoNotMatch"));

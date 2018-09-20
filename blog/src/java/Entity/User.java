@@ -91,9 +91,12 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userUserNo")
     private Collection<Notify> notifyCollection;
 
+    
+    
     public User() {
         followerNum = 0;
         unreadMessageNum = 0;
+        
     }
 
     public User(Integer userNo) {
@@ -128,9 +131,9 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-
+    
     public void setPassword(String password) {
-        this.password = password;
+        this.password =password;
     }
 
     public String getGender() {
