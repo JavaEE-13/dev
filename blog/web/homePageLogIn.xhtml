@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>HomePage</title>
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
@@ -22,7 +23,6 @@
                         <div class = "my-2 my-lg-0">
                             <h:form>
                                 <h:commandLink value = "#{userController.selected.userName}" action="mweb.xhtml"/> 
-
                             </h:form>
 
                             <h:form>
@@ -42,19 +42,20 @@
             <h:form>
                 <p:menu>
                     <p:submenu label = "TvShow" >
-                        <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel(TV_Play, Euramerican)}"/> 
-                        <p:menuitem value="Japanese And Korean" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Japanese_And_Korean)}"/>
-                        <p:menuitem value="Chinese" actionListener = "#{categoryController.getBlogByCateAndLabel(TV_Play, Chinese)}"/>
+                        <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel('TV_Play', 'Euramerican')}"/> 
+                        <p:menuitem value="Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Japanese_And_Korean')}"/>
+                        <p:menuitem value="Chinese" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Chinese')}"/>
                     </p:submenu> 
+
                     <p:submenu label = "Movie" >
-                        <p:menuitem value="Comedy" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Comedy)}"/> 
-                        <p:menuitem value="Suspense" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Suspense)}"/>
-                        <p:menuitem value="Action" actionListener = "#{categoryController.getBlogByCateAndLabel(Movie, Action)}"/>
+                        <p:menuitem value="Comedy" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Comedy')}"/> 
+                        <p:menuitem value="Suspense" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Suspense')}"/>
+                        <p:menuitem value="Action" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Action')}"/>
                     </p:submenu> 
                     <p:submenu label = "Variety" >
-                        <p:menuitem value="Sports" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Sports)}"/> 
-                        <p:menuitem value="Talk Show" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety,Talk_Show)}"/>
-                        <p:menuitem value="Emotion" actionListener = "#{categoryController.getBlogByCateAndLabel(Variety, Emotion)}"/>
+                        <p:menuitem value="Sports" outcome = "#{categoryController.getBlogByCateAndLabel('Variety', 'Sports')}"/> 
+                        <p:menuitem value="Talk Show" outcome = "#{categoryController.getBlogByCateAndLabel('Variety','Talk_Show')}"/>
+                        <p:menuitem value="Emotion" outcome = "#{categoryController.getBlogByCateAndLabel('Variety', 'Emotion')}"/>
                     </p:submenu>
                     <p:submenu label = "Animation" >
 
@@ -63,16 +64,121 @@
             </h:form>
             <div id = "center">
                 <div id = "up-left">
-                    <h1> TV Show</h1>
+                    <h1> TV Play</h1>
+                    <p:outputPanel>   
+                        <h:dataTable value="#{categoryController.getBlogByCategory('TV_Play')}" 
+                                     rendered ="#{categoryController.getBlogByCategory('TV_Play') ne null}"
+                                     var="item" border="0" cellpadding="2" cellspacing="0" 
+                                     rules="all" style="border:solid 2px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                </f:facet>
+                                <h:link value="#{item.title}" outcome = "#{blogController.getBlogDetail(item)}"/>                                                                                                
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.author.userName}"/>
+                            </h:column>   
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                            </h:column>
+                        </h:dataTable>
+                    </p:outputPanel>
                 </div>
                 <div id = "up-right">
                     <h1> Movie</h1>
+                    <p:outputPanel>   
+                        <h:dataTable value="#{categoryController.getBlogByCategory('Movie')}" 
+                                     rendered ="#{categoryController.getBlogByCategory('Movie') ne null}"
+                                     var="item" border="0" cellpadding="2" cellspacing="0" 
+                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                </f:facet>
+                                <h:link value="#{item.title}" outcome="#{blogController.getBlogDetail(item)}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.author.userName}"/>
+                            </h:column>   
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                            </h:column>
+                        </h:dataTable>
+                    </p:outputPanel>
                 </div>
                 <div id ="bottom-left">
                     <h1>Entertainment</h1>
+                    <p:outputPanel>   
+                        <h:dataTable value="#{categoryController.getBlogByCategory('Variety')}" 
+                                     rendered ="#{categoryController.getBlogByCategory('Variety') ne null}"
+                                     var="item" border="0" cellpadding="2" cellspacing="0" 
+                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                </f:facet>
+                                <h:link value="#{item.title}" outcome="#{blogController.getBlogDetail(item)}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.author.userName}"/>
+                            </h:column>   
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                            </h:column>
+                        </h:dataTable>
+                    </p:outputPanel>
                 </div>
                 <div id ="bottom-right">
-                    <h1>Cartoon</h1>
+                    <h1>Animation</h1>
+                    <p:outputPanel>   
+                        <h:dataTable value="#{categoryController.getBlogByCategory('Animation')}" 
+                                     rendered ="#{categoryController.getBlogByCategory('Animation') ne null}"
+                                     var="item" border="0" cellpadding="2" cellspacing="0" 
+                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
+                            <h:column>
+                                <h:form>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                    </f:facet>
+                                    <h:link value="#{item.title}" outcome="#{blogController.getBlogDetail(item)}"/>
+                                </h:form>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.author.userName}"/>
+                            </h:column>   
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+
+                            </h:column>
+
+                        </h:dataTable>
+                    </p:outputPanel>
                 </div>
             </div>
         </div>

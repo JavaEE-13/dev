@@ -2,6 +2,8 @@ package Web;
 
 import Entity.Blog;
 import Entity.Collect;
+import Entity.Follow;
+import Entity.FollowPK;
 import Entity.User;
 import Web.util.JsfUtil;
 import Web.util.PaginationHelper;
@@ -39,12 +41,20 @@ public class UserController implements Serializable, Validator {
 
     @EJB
     private Session.BlogFacade blogFacade;
+    @EJB
+    private Session.FollowFacade followFacade;
 
+    @EJB
+    private Session.UserFacade userFacade;
+    
     private String userName;
     private String password;
 
     private String passwordConfirm;
 
+    
+    
+    
     
     
     public String getUserName() {
@@ -103,6 +113,9 @@ public class UserController implements Serializable, Validator {
         }
         return myCollectBlog;
     }
+    
+     
+    
     
     public void validate(FacesContext context, UIComponent component,
             Object value) throws ValidatorException {
@@ -187,21 +200,6 @@ public class UserController implements Serializable, Validator {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareSignUp();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
-    }
-
-    public String create() {
-        try {
-            if (passwordConfirm == null ? current.getPassword() != null : !passwordConfirm.equals(current.getPassword())) {
-                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PasswordDoNotMatch"));
-                return null;
-            }
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
-            return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

@@ -3,6 +3,7 @@ package Web;
 import Entity.Blog;
 import Entity.Category;
 import Entity.Comment;
+import Entity.User;
 
 import Web.util.JsfUtil;
 import Web.util.PaginationHelper;
@@ -35,6 +36,9 @@ public class BlogController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    @EJB
+    private Session.FollowFacade followFacade;
+    
     private Collection<Blog> hots;
     //private Collection<Blog> blogsByCate;
     private Collection<Blog> searchedBlogs;
@@ -71,6 +75,7 @@ public class BlogController implements Serializable {
         current = blog;
         return "thePost.xhtml";
     }
+    
     
     
     
@@ -123,10 +128,12 @@ public class BlogController implements Serializable {
     }
     
      
+     
+     
      //找什么？
-    public SelectItem[] MygetItemsAvailableSelectOne(entity.BlogNo id) {
-        return JsfUtil.MygetSelectItems(ejbFacade.find(id), true);
-    }
+//    public SelectItem[] MygetItemsAvailableSelectOne(entity.BlogNo id) {
+//        return JsfUtil.MygetSelectItems(ejbFacade.find(id), true);
+//    }
     
     public BlogController() {
     }
@@ -197,7 +204,7 @@ public class BlogController implements Serializable {
     public String prepareCreate() {
         current = new Blog();
         selectedItemIndex = -1;
-        return "Create";
+        return "homePageLogIn.xhtml";
     }
 
     public String create() {

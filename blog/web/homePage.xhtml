@@ -15,7 +15,7 @@
     <h:body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class = "col-8">
+                <div class = "col-4">
                     <a class="navbar-brand" href="homePage">HomePage</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -98,7 +98,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListBlogTitle_title}"/>
                                 </f:facet>
-                                <h:link value="#{item.title}" outcome = "thePost.xhtml"/>                                                                                                
+                                <h:link value="#{item.title}" outcome ="#{blogController.getBlogDetail(item)}"/>                                                                                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
