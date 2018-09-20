@@ -1,11 +1,15 @@
 package Web;
 
+import Entity.Blog;
+import Entity.Collect;
 import Entity.User;
 import Web.util.JsfUtil;
 import Web.util.PaginationHelper;
 import Session.UserFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -33,11 +37,16 @@ public class UserController implements Serializable, Validator {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    @EJB
+    private Session.BlogFacade blogFacade;
+
     private String userName;
     private String password;
 
     private String passwordConfirm;
 
+    
+    
     public String getUserName() {
         return userName;
     }
@@ -75,7 +84,24 @@ public class UserController implements Serializable, Validator {
 
     public String prepareSignOut(){
         current = null;
-        return "homaPage.xhtml";
+        return "/homaPage.xhtml";
+    }
+    
+    public Collection<Blog> getMyBlogs(){
+        Collection<Blog> myBlogs= new ArrayList<>();
+        myBlogs = current.getBlogCollection();
+        return myBlogs;
+    }
+    
+    public Collection<Blog> getMyCollecion(){
+        Collection<Collect> myCollection = new ArrayList<>();
+        Collection<Blog> myCollectBlog = new ArrayList<>();
+        myCollection = current.getCollectCollection();
+        int size = myCollection.size();
+        for(Collect c: myCollection){
+            myCollectBlog.add(blogFacade.getBlogByBlogNo(c.getBlogBlogNo()));
+        }
+        return myCollectBlog;
     }
     
     public void validate(FacesContext context, UIComponent component,
@@ -87,7 +113,7 @@ public class UserController implements Serializable, Validator {
                 c = ui;
                 break;
             }
-
+            
             HtmlInputText htmlInputText = (HtmlInputText) c;
             if (!value.toString().trim().equals(htmlInputText.toString().trim())) {
                 FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("/Bundle").getString("PasswordDoNotMatch"));
@@ -323,5 +349,5 @@ public class UserController implements Serializable, Validator {
         }
 
     }
-
 }
+

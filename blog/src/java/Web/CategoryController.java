@@ -52,7 +52,7 @@ public class CategoryController implements Serializable {
 
     public String getBlogByCateAndLabel(String cate, String label) {
         current = ejbFacade.findBlogByCateAndLabel(cate, label);
-
+ 
         Collection<Blog> blogC = new ArrayList<>();
         try {
             blogC.addAll(current.getBlogCollection());

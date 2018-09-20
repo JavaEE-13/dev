@@ -15,7 +15,7 @@
     <h:body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class = "col-4">
+                <div class = "col-8">
                     <a class="navbar-brand" href="homePage">HomePage</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
                 <div class = "col-4">
                     <h:form>
                         <h:panelGrid columns="3">
-                            <h:outputLabel value="Search By DIY Label" for="label" for="diyLabel" />                           
+                            <h:outputLabel value="Search By DIY Label" for="diyLabel" />                           
                             <h:inputText id="label" value="#{blogController.diyLabel}" required="true" requiredMessage="The field is required."/>
                             <h:commandButton type = "submit" actionListener = "#{blogController.searchByDLabel}" value = "search"/>                           
                         </h:panelGrid>
@@ -63,11 +63,13 @@
 
                 <h:form>
                     <p:menu>
+
                         <p:submenu label = "TvShow" >
                             <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel('TV_Play', 'Euramerican')}"/> 
                             <p:menuitem value="Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Japanese_And_Korean')}"/>
                             <p:menuitem value="Chinese" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Chinese')}"/>
                         </p:submenu> 
+
                         <p:submenu label = "Movie" >
                             <p:menuitem value="Comedy" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Comedy')}"/> 
                             <p:menuitem value="Suspense" outcome = "#{categoryController.getBlogByCateAndLabel('Movie', 'Suspense')}"/>
@@ -104,14 +106,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="YYYY/mm/dd HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                            
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
@@ -140,14 +135,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                              
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
@@ -175,14 +163,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                             
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
@@ -212,14 +193,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.author.userName}"/>
                             </h:column>   
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.createdTime}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:outputText>
-                            </h:column>  
+                            
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="&nbsp;"/>
