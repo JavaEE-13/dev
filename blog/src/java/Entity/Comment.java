@@ -65,6 +65,7 @@ public class Comment implements Serializable {
     private User userUserNo;
 
     public Comment() {
+        this.createdTime = new Date();
     }
 
     public Comment(Integer commentNo) {

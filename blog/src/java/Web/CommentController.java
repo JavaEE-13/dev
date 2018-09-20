@@ -29,6 +29,55 @@ public class CommentController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    public String prepareComment() {
+        current = new Comment();
+        selectedItemIndex = -1;
+        return "thePost.xhtml";
+    }
+    
+    public String createComment() {
+        try{
+        getFacade().create(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CommentSuccess"));
+        return prepareComment();
+        }catch(Exception ex){
+            JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
+    public String MygetComment(String string) {
+        //不知道怎么改
+        current = (Comment) getItems().getRowData();
+        if (current.getBlogBlogNo().equals(string)) {
+            return current.getContent();
+
+        } else {
+            return null;
+        }
+
+    }
+
+    public String MyprepareCreate() {
+
+        current = new Comment();
+        selectedItemIndex = -1;
+
+        return "ThePost";
+    }
+
+    public String Mycreate() {
+        try {
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ReplyCreated"));
+            recreateModel();
+            return "ThePost";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }
+    }
+
     public CommentController() {
     }
 
