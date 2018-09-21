@@ -38,7 +38,7 @@ public class FollowController implements Serializable {
     
     public String getAuthorDetail(User u){
         setAuthor(u);
-        return "selfinfo.xhtml";
+        return "author.xhtml";
     }
     
     public User getAuthor(){
@@ -54,7 +54,7 @@ public class FollowController implements Serializable {
         if(u1 == u2){
             JsfUtil.addErrorMessage("You can not follow yourself");
         }
-        if(userFacade.getFollowByBlogAndUser(u1, u2) != null){
+        if(ejbFacade.getFollowByUserAndFollower(u1.getUserNo(), u2.getUserNo()) != null){
             JsfUtil.addErrorMessage("You have already Followed.");
         }
         Follow f = new Follow(new FollowPK(u1.getUserNo(), u2.getUserNo()));
@@ -66,8 +66,6 @@ public class FollowController implements Serializable {
         userFacade.edit(u1);
         JsfUtil.addSuccessMessage("Follow success");
     }
-    
-    
     
     
     public FollowController() {

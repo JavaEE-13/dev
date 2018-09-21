@@ -8,7 +8,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>selfinfo1.0</title>
+        <title>selfinfo</title>
         <link rel="stylesheet" href="resources/css/selfinfo.css" type="text/css" />
     </h:head>
     <h:body>
@@ -22,7 +22,10 @@ and open the template in the editor.
                         <td class="htcell2" height="200px">
                             <table class="ctable">
                                 <tr>
-                                    <h:link value="#{followController.author.userName}" outcome = "#{followController.createFollow(author, userController.selected)}"/>
+                                    <h:form>
+                                        <h:outputText value="#{followController.author.userName}"/>
+                                        <h:commandlink value="follow" outcome = "#{followController.createFollow(followController.author, userController.selected)}"/>
+                                    </h:form>
                                 </tr>
                                 <tr>
                                     <h:outputText value="#{followController.author.personalSign}" rendered="#{followController.author.personalSign ne null}"/>
@@ -50,7 +53,9 @@ and open the template in the editor.
                 </table>
                 <div class="returnd">
                     <h2>
-                        <a href="/blog/homePageLogIn.xhtml" target="_self" >返回首页</a>/<a href="/blog/homePage.xhtml" target="_self" >退出登录</a>
+                        <h:outputText value="#{userController.selected.userName}"/>
+                        <a href="/blog/homePageLogIn.xhtml" target="_self" >返回首页</a>
+                        /<a href="/blog/homePage.xhtml" target="_self" >退出登录</a>
                     </h2>
                 </div>
             </div>
@@ -92,15 +97,11 @@ and open the template in the editor.
                     <td>
                         <input type="text" value="" id="iname"/>
                     </td>
-                    <td>
-                        <pre>
-						
-                        </pre>
-                    </td>
+
                 </tr>
                 <tr>
                     <td>
-                        <br></br>
+                        <br/>
                         性别:
                     </td>
                     <td>

@@ -48,7 +48,6 @@
                             <button type="button" class="btn btn-light" onClick = "location = 'admin/adminSignIn.xhtml'">
                                 as admin
                             </button>
-
                         </div>
                     </div>
                 </div>
@@ -60,10 +59,8 @@
                 <h4 style="center">
                     menu
                 </h4>
-
                 <h:form>
                     <p:menu>
-
                         <p:submenu label = "TvShow" >
                             <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel('TV_Play', 'Euramerican')}"/> 
                             <p:menuitem value="Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Japanese_And_Korean')}"/>

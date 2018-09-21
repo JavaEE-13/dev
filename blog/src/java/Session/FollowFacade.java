@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author user
  */
-@Stateful
+@Stateless
 public class FollowFacade extends AbstractFacade<Follow> {
 
     @PersistenceContext(unitName = "blogPU")

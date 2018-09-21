@@ -46,6 +46,16 @@ public class CategoryController implements Serializable {
 
     private List<Category> cateList;
 
+    private Collection<Blog> blogC;
+    
+    public Collection<Blog> getBlogC(){
+        return this.blogC;
+    }
+    
+    public void setBlogC(Collection<Blog> b){
+        this.blogC = b;
+    }
+    
 //    private BlogController bControl;
     public CategoryController() {
     }
@@ -53,7 +63,7 @@ public class CategoryController implements Serializable {
     public String getBlogByCateAndLabel(String cate, String label) {
         current = ejbFacade.findBlogByCateAndLabel(cate, label);
  
-        Collection<Blog> blogC = new ArrayList<>();
+        blogC = new ArrayList<>();
         try {
             blogC.addAll(current.getBlogCollection());
         } catch (NoResultException e) {
@@ -64,7 +74,7 @@ public class CategoryController implements Serializable {
 //            throw new NullPointerException(msg);
             e.printStackTrace();
         }    
-        return "thePost.xhtml";
+        return "posts.xhtml";
     }
 
     public Collection<Blog> getBlogByCategory(String cate) {

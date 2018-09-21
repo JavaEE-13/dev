@@ -51,15 +51,7 @@ public class UserController implements Serializable, Validator {
     private String password;
 
     private String passwordConfirm;
-<<<<<<< HEAD
-=======
-
-    
-    
-    
-    
->>>>>>> cb9e1f787e33438fdf4c0290f9ac2c772ee1f5dc
-    
+ 
     public String getUserName() {
         return userName;
     }

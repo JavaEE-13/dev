@@ -1,0 +1,84 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    background: #eee;
+}
+.head{
+    height: 200px;
+    background: url();
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.header-table img{
+    vertical-align: middle;
+    border-radius: 130px;
+    margin-left: 50px;
+    box-shadow: rgba(0,0,0,0.3) 3px 4px 3px;
+}
+.pname{
+    font-size: 140%;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+.signature{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.returnd {
+   float: right;
+   margin-right: 30px;
+   margin-top: 0px;
+}
+.returnd h2{
+    font-size: 12px;
+    font-weight: 200
+}
+.colnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /*background-color: #00C37E;*/
+}
+
+.colnav ul li {
+    margin-left: 100px;
+    float: left;
+}
+
+.colnav ul li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+.art{
+    margin-left: 30px;
+}
+.colnav ul li a:hover {
+    background-color: #FFE4C4;
+}
+.selfinfo{
+    float: left;
+    margin-top: 30px;
+    width: 100px;
+    margin-left: 100px;
+    border-style: solid;
+    background:  #00C37E;
+    border-color:  #00C37E;
+}
+.selfword{
+    color: white;
+    margin-left: 10px;
+}
+.abody{
+    margin-top: 30px;
+    float: right;
+    margin-right: 400px;
+    width: 800px;
+    height: 600px;
+    margin-left: 50px;
+    border-color: #00C37E;
+    border-style: solid;
+}

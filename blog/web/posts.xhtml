@@ -15,8 +15,8 @@
             <h:form>
                 <p:breadCrumb>
                     <p:menuitem value="Categories" url="#" />
-                    <p:menuitem value="Sports" url="#" />
-                    <p:menuitem value="Basketball" url="#" />                
+                    <p:menuitem value="#{categoryController.selected.category}" url="#" />
+                    <p:menuitem value="#{categoryController.selected.label}" url="#" />                
                 </p:breadCrumb> 
             </h:form>
 
@@ -46,50 +46,43 @@
        
                    </p:layoutUnit>-->
         <!--<p:layoutUnit position="center">-->
-        <p:scrollPanel style="width:100%;height:480px"> 
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListPostEmpty}" rendered="#{blogController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{blogController.items.rowCount > 0}">
+        <p:outputPanel>
+            <h:dataTable value="#{categoryController.blogC}" 
+                         rendered ="#{categoryController.blogC ne null}"
+                         var="item" border="0" cellpadding="2" cellspacing="0" 
+                         rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink value="#{item.title}" action = "#{blogController.getBlogDetail(item)}"/> 
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.author.userName}"/>
+                </h:column>   
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBlogTitle_createdTime}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.createdTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>  
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="&nbsp;"/>
+                    </f:facet>
 
-                    <h:dataTable value="#{blogController.items}" var="item" border="10" cellpadding="6" rules="all" style="border:solid 0px" width="100%" >
-                        <h:column>
-                            <h:commandLink  action="#{blogController.MyprepareView}" value="#{item.title}" ></h:commandLink>
-                        </h:column>
-
-                    </h:dataTable>
-                    <br/>
-                    <div align="right">
-                        <h:outputText value="#{blogController.pagination.pageFirstItem + 1}..#{blogController.pagination.pageLastItem + 1}/#{blogController.pagination.itemsCount}"/>&nbsp;
-                        <h:commandLink action="#{blogController.Myprevious}" value="#{bundle.Previous} #{blogController.pagination.pageSize}" rendered="#{blogController.pagination.hasPreviousPage}"/>&nbsp;
-                        <h:commandLink action="#{blogController.Mynext}" value="#{bundle.Next} #{blogController.pagination.pageSize}" rendered="#{blogController.pagination.hasNextPage}"/>&nbsp;
-                    </div>
-
-                </h:panelGroup>
-
-            </h:form>
-
-        </p:scrollPanel>
-        <h:form>
-            <p:commandButton value="Post" action="MyPost"/>
-
-
-            <br/>
-            <h:link outcome="welcomePrimefaces" value="Primefaces 欢迎使用页" />
-            <br />
-            <h:link outcome="/post/List" value="Show All Post Items"/>
-            <br />
-        </h:form>
-        <!--</p:layoutUnit>-->
-        <!--</p:layout>-->
-
+                </h:column>
+            </h:dataTable>
+        </p:outputPanel>
 
     </h:body>
 
-
-
-
-
 </html>
+

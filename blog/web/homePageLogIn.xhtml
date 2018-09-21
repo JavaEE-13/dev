@@ -28,10 +28,10 @@
                             <h:form>
                                 <h:commandLink value = "Sign Out" action = "#{userController.prepareSignOut}"/>
                             </h:form>
-
-                            <button type = "button" class="btn btn-dark" onClick = "location = 'post.xhtml'">
-                                post
-                            </button>
+                            <h:form>
+                                <h:link value = "post" outcome = "post.xhtml"/>
+                                <h:commandLink value = "post" action = "post.xhtml"/>
+                            </h:form>
                         </div>
                     </div>
                 </div>s
@@ -74,7 +74,9 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListBlogTitle_title}"/>
                                 </f:facet>
-                                <h:link value="#{item.title}" outcome = "#{blogController.getBlogDetail(item)}"/>                                                                                                
+                                <h:form>
+                                    <h:commandLink value="#{item.title}" action = "#{blogController.getBlogDetail(item)}"/>      
+                                </h:form>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -103,7 +105,9 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListBlogTitle_title}"/>
                                 </f:facet>
-                                <h:link value="#{item.title}" outcome="#{blogController.getBlogDetail(item)}"/>
+                                <h:form>
+                                    <h:commandLink value="#{item.title}" action = "#{blogController.getBlogDetail(item)}"/>  
+                                </h:form>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
