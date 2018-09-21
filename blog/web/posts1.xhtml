@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <p:outputPanel style="width:100%;height: 50px">
+            <h:form>
+                <p:breadCrumb>
+                    <p:menuitem value="#{categoryController.selected.category}" url="#{categoryController.selected.category}" />
+                    <p:menuitem value="#{categoryController.selected.label}" url="#{categoryController.selected.category}" />
+                </p:breadCrumb> 
+            </h:form>
+
+        </p:outputPanel>
+        <p:scrollPanel style="width:100%;height:480px"> 
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBlogEmpty}" rendered="#{blogController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{categoryController.selected.blogCollection > 0}">
+
+                    <h:dataTable value="#{categoryController.selected.blogCollection}" var="item" border="10" cellpadding="6" rules="all" style="border:solid 0px" width="100%" >
+                        <h:column>
+                            <h:commandLink  action="#{blogController.MyprepareView}" value="#{item.title}" ></h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <div align="right">
+                        <h:outputText value="#{blogController.pagination.pageFirstItem + 1}..#{blogController.pagination.pageLastItem + 1}/#{blogController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{blogController.Myprevious}" value="#{bundle.Previous} #{blogController.pagination.pageSize}" rendered="#{blogController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{blogController.Mynext}" value="#{bundle.Next} #{blogController.pagination.pageSize}" rendered="#{blogController.pagination.hasNextPage}"/>&nbsp;
+                    </div>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:scrollPanel>
+        <h:form>
+            <h:commandButton value="Post" action="MyPost" class="btn btn-secondary" />        
+            <br />
+            <h:link outcome="/post/List" value="Show All Post Items"/>
+            <br />
+        </h:form>
+
+    </h:body>
+
+</html>
+

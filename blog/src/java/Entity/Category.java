@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
     , @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId")
     , @NamedQuery(name = "Category.findByCategory", query = "SELECT c FROM Category c WHERE c.category = :category")
-    , @NamedQuery(name = "Category.findByCateAndLabel", query = "SELECT c FROM Category c WHERE c.category = :cate AND c.label = :label")      
+    , @NamedQuery(name = "Category.findByCateAndLabel", query = "SELECT c FROM Category c WHERE c.category = :cate AND c.label = :label")
 })
 public class Category implements Serializable {
 
@@ -79,6 +79,7 @@ public class Category implements Serializable {
     }
 
     public String getCategory() {
+        System.out.println(category);
         return category;
     }
 

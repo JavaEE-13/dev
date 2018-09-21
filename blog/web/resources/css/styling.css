@@ -49,32 +49,30 @@ and open the template in the editor.
     top:0;
     right:0;
     bottom:0;
-    left:210px;
+    left:220px;
     overflow:auto;
-    background-color: Turquoise;
+    
 }
 
 #up-left{
     position:absolute;
     top:10px;
     left:10px;
-
-    width:600px;
+    width:500px;
     height:300px;
     overflow: hidden;
-    background-color: SteelBlue;
+    
 }
 
 #up-right{
     position:absolute;
     top:10px;
-    left:620px;
+    left:520px;
     right:10px;
-    width:600px;
+    width:500px;
     height:300px;
     overflow: hidden;
-    background-color: SteelBlue;
-}
+    }
 
 
 #bottom-left{
@@ -82,25 +80,23 @@ and open the template in the editor.
     left:10px;
     top:320px;
     bottom:10px;
-    width:600px;
+    width:500px;
     height:300px;
     overflow: hidden;
-    background-color: SteelBlue;
+   
 }
 
 #bottom-right{
     position:absolute;
-    left:620px;
+    left:520px;
     right:10px;
     top:320px;
     bottom:10px;
-    width:600px;
+    width:500px;
     height:300px;
     overflow: hidden;
-    background-color: SteelBlue;
+   
 }
 
-#panel{
-    background-color: CadetBlue;
-}
+
 

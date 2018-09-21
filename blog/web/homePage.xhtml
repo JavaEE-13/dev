@@ -33,12 +33,7 @@
                 </div>
                 <div class ="col-4">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class = "my-2 my-lg-0">
-                            <h:link value = "sign in" rendered = "#{userController.selected ne null}" 
-                                    outcome = "signin.xhtml"/>
-                            <h:link value = "#{userController.selected.userName}" 
-                                    rendered ="#{userController.selected ne null}" 
-                                    outcome = "myprofile.xhtml"/>  
+                        <div class = "my-2 my-lg-0">                            
                             <button type = "button" class="btn btn-dark" onClick = "location = 'signin.xhtml'">
                                 sign in
                             </button>
@@ -62,9 +57,9 @@
                 <h:form>
                     <p:menu>
                         <p:submenu label = "TvShow" >
-                            <p:menuitem value="Euramerican" outcome="#{categoryController.getBlogByCateAndLabel('TV_Play', 'Euramerican')}"/> 
-                            <p:menuitem value="Japanese And Korean" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Japanese_And_Korean')}"/>
-                            <p:menuitem value="Chinese" outcome = "#{categoryController.getBlogByCateAndLabel('TV_Play', 'Chinese')}"/>
+                            <p:menuitem value="#{categoryController.getCategory(4).label}" outcome="posts1.xhtml"/> 
+                            <p:menuitem value="#{categoryController.getCategory(5).label}" outcome = "posts1.xhtml"/>
+                            <p:menuitem value="#{categoryController.getCategory(6).label}" outcome = "posts1.xhtml"/>
                         </p:submenu> 
 
                         <p:submenu label = "Movie" >
@@ -85,124 +80,154 @@
             </div>
             <div id = "center">
                 <div id = "up-left">
-                    <h1> TV Play</h1>
+                    <h3> TV Show</h3>
                     <p:outputPanel>   
-                        <h:dataTable value="#{categoryController.getBlogByCategory('TV_Play')}" 
-                                     rendered ="#{categoryController.getBlogByCategory('TV_Play') ne null}"
-                                     var="item" border="0" cellpadding="2" cellspacing="0" 
-                                     rules="all" style="border:solid 2px">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
-                                </f:facet>
-                                <h:link value="#{item.title}" outcome ="#{blogController.getBlogDetail(item)}"/>                                                                                                
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.author.userName}"/>
-                            </h:column>   
-                            
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="&nbsp;"/>
-                                </f:facet>
-                            </h:column>
-                        </h:dataTable>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{categoryController.getBlogByCategory('TV_Play')}" 
+                                           rendered ="#{categoryController.getBlogByCategory('TV_Play') ne null}"
+                                           var="item">
+                                    <tr>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandLink value="#{item.title}" action = "#{blogController.getBlogDetail(item)}"/>      
+                                            </h:form>
+                                        </td>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.author.userName}"/>
+                                        </td>
+                                    </tr>                               
+                                </ui:repeat>
+                            </tbody>
+                        </table>
                     </p:outputPanel>
                 </div>
                 <div id = "up-right">
-                    <h1> Movie</h1>
+                    <h3> Movie</h3>
                     <p:outputPanel>   
-                        <h:dataTable value="#{categoryController.getBlogByCategory('Movie')}" 
-                                     rendered ="#{categoryController.getBlogByCategory('Movie') ne null}"
-                                     var="item" border="0" cellpadding="2" cellspacing="0" 
-                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
+                        <table class="table">
+                            <thead>
+                                <tr>
 
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
-                                </f:facet>
-                                <h:link value="#{item.title}" onclick="thePost.xhtml"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.author.userName}"/>
-                            </h:column>   
-                              
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="&nbsp;"/>
-                                </f:facet>
-                            </h:column>
-                        </h:dataTable>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{categoryController.getBlogByCategory('Movie')}" 
+                                           rendered ="#{categoryController.getBlogByCategory('Movie') ne null}"
+                                           var="item">
+                                    <tr>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandLink value="#{item.title}" action = "#{blogController.getBlogDetail(item)}"/>      
+                                            </h:form>
+                                        </td>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.author.userName}"/>
+                                        </td>
+                                    </tr>                               
+                                </ui:repeat>
+                            </tbody>
+                        </table>
                     </p:outputPanel>
+
                 </div>
                 <div id ="bottom-left">
-                    <h1>Entertainment</h1>
+                    <h3>Variety</h3>
                     <p:outputPanel>   
-                        <h:dataTable value="#{categoryController.getBlogByCategory('Variety')}" 
-                                     rendered ="#{categoryController.getBlogByCategory('Variety') ne null}"
-                                     var="item" border="0" cellpadding="2" cellspacing="0" 
-                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_title}"/>
-                                </f:facet>
-                                <h:link value="#{item.title}" onclick="thePost.xhtml"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.author.userName}"/>
-                            </h:column>   
-                             
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="&nbsp;"/>
-                                </f:facet>
-                            </h:column>
-                        </h:dataTable>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{categoryController.getBlogByCategory('Variety')}" 
+                                           rendered ="#{categoryController.getBlogByCategory('Variety') ne null}"
+                                           var="item">
+                                    <tr>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandLink value="#{item.title}" action = "#{blogController.getBlogDetail(item)}"/>      
+                                            </h:form>
+                                        </td>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.author.userName}"/>
+                                        </td>
+                                    </tr>                               
+                                </ui:repeat>
+                            </tbody>
+                        </table>
                     </p:outputPanel>
+
                 </div>
                 <div id ="bottom-right">
-                    <h1>Animation</h1>
+                    <h3>Animation</h3>
                     <p:outputPanel>   
-                        <h:dataTable value="#{categoryController.getBlogByCategory('Animation')}" 
-                                     rendered ="#{categoryController.getBlogByCategory('Animation') ne null}"
-                                     var="item" border="0" cellpadding="2" cellspacing="0" 
-                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 3px">
-                            <h:column>
-                                <h:form>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListBlogTitle_title}"/>
-                                    </f:facet>
-                                    <h:commandButton value="#{item.title}" actionListener="#{blogController.getBlogDetail(item)}"/>
-                                </h:form>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListBlogTitle_author}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.author.userName}"/>
-                            </h:column>   
-                            
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="&nbsp;"/>
-                                </f:facet>
+                        <table class="table">
+                            <thead>
+                                <tr>
 
-                            </h:column>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author</th>
 
-                        </h:dataTable>
-                    </p:outputPanel>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{categoryController.getBlogByCategory('Animation')}" 
+                                           rendered ="#{categoryController.getBlogByCategory('Animation') ne null}"
+                                           var="item">
+                                    <tr>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_title}"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandLink value="#{item.title}" action = "#{blogController.getBlogDetail(item)}"/>      
+                                            </h:form>
+                                        </td>
+                                        <td>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListBlogTitle_author}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.author.userName}"/>
+                                        </td>
+                                    </tr>                               
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </p:outputPanel>                   
                 </div>
             </div>
         </div>
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
